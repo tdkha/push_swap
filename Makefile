@@ -10,12 +10,18 @@ LIB_A			=	$(LIBFT)/libft.a
 
 SRC_FILES		=	./srcs/main.c \
 					./srcs/debug.c \
+					./srcs/args.c \
 					./srcs/stack.c \
 					./srcs/node.c \
-					./srcs/stack_action_swap.c 
+					./srcs/stack_action_swap.c \
+					./srcs/stack_action_rotate.c \
+					./srcs/stack_action_rrotate.c \
+					./srcs/stack_action_push.c
+
 
 O_DIR			=	obj
 O_FILES			= $(addprefix $(O_DIR)/, $(notdir ${SRC_FILES:.c=.o}))
+
 
 $(O_DIR)/%.o: srcs/%.c
 	@mkdir -p $(O_DIR)
@@ -25,13 +31,13 @@ $(O_DIR)/%.o: srcs/%.c
 	@touch .libft
 	${MAKE} -C ${LIBFT}
 
-all: mandatory
+all: .mandatory
 
-mandatory: $(NAME)
+mandatory: .mandatory
 
 bonus: .bonus
 
-$(NAME): $(O_FILES) .libft
+.mandatory: $(O_FILES) .libft
 	$(CC) $(CFLAGS) $(O_FILES) -L${LIBFT} -lft -o $(NAME)
 	@touch .mandatory
 	@rm -f .bonus

@@ -6,7 +6,7 @@
 /*   By: ktieu <ktieu@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 16:12:38 by ktieu             #+#    #+#             */
-/*   Updated: 2024/06/26 16:51:11 by ktieu            ###   ########.fr       */
+/*   Updated: 2024/06/27 09:43:08 by ktieu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int	ps_swap(t_ps_stack *stack)
 	t_ps_node	*tail_node;
 	t_ps_node	*prev_node;
 	t_ps_node	*prev_prev_node;
-	
+
 	if (stack->size < 2 || !stack->tail)
 		return (0);
 	tail_node = stack->tail;
@@ -34,7 +34,7 @@ int	ps_swap(t_ps_stack *stack)
 	if (prev_prev_node)
 		prev_prev_node->next = tail_node;
 	else
-		stack->head = tail_node; // If prev_prev_node is NULL, tail_node is the new head
+		stack->head = tail_node;
 
 	stack->tail = prev_node;
 	return (1);
@@ -42,9 +42,12 @@ int	ps_swap(t_ps_stack *stack)
 
 int	ps_swap2(t_ps_stack *a, t_ps_stack *b)
 {
+	int	res;
+
+	res = 1;
 	if (!ps_swap(a))
-		return (0);
+		res = 0;
 	if (!ps_swap(b))
-		return (0);
-	return (1);
+		res = 0;
+	return (res);
 }

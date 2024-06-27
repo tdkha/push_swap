@@ -1,36 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   stack_action_push.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ktieu <ktieu@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/06/26 11:53:52 by ktieu             #+#    #+#             */
-/*   Updated: 2024/06/27 09:29:38 by ktieu            ###   ########.fr       */
+/*   Created: 2024/06/27 09:47:21 by ktieu             #+#    #+#             */
+/*   Updated: 2024/06/27 10:08:22 by ktieu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/push_swap.h"
+#include "../includes/stack.h"
 
-int	main(int ac, char **av)
+int	ps_push(t_ps_stack *from, t_ps_stack *to)
 {
-	t_ps_stack	stack;
-	t_ps_node	*node;
-	int			i = 0;
+	t_ps_node	*to_add_node;
 
-	ft_arg_check(ac, av);
-	stack = ps_stack_init();
-	while (i < 3)
+	if (from->size < 1 || !from->tail)
+		return (0);
+	to_add_node = from->tail;
+	if (from->tail->prev)
 	{
-		node = ps_node_init(i);
-		ps_stack_push(&stack, node);
-		i++;
+		from->tail = from->tail->prev;
+		from->tail->next = NULL;
 	}
-	ft_debug_print_stack(&stack);
-	ps_rotate(&stack);
-	ft_debug_print_stack(&stack);
-	ps_rrotate(&stack);
-	ft_debug_print_stack(&stack);
-	ps_stack_free(&stack);
-	return (0);	
+	else
+	{
+		from->head = NULL;
+		from->tail = NULL;
+	}
+	to_add_node->prev = NULL;
+	from->size--;
+	ps_stack_push(to, to_add_node);
+	return (1);
 }

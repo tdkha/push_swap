@@ -6,7 +6,7 @@
 /*   By: ktieu <ktieu@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 11:54:23 by ktieu             #+#    #+#             */
-/*   Updated: 2024/06/26 15:26:10 by ktieu            ###   ########.fr       */
+/*   Updated: 2024/06/27 08:35:07 by ktieu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,6 @@
 
 #include "./stack.h"
 
-
+void	ft_arg_check(int ac, char **av);
 
 #endif
