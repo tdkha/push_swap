@@ -6,7 +6,7 @@
 /*   By: ktieu <ktieu@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 11:53:52 by ktieu             #+#    #+#             */
-/*   Updated: 2024/06/27 09:29:38 by ktieu            ###   ########.fr       */
+/*   Updated: 2024/06/28 13:20:43 by ktieu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,11 +26,12 @@ int	main(int ac, char **av)
 		ps_stack_push(&stack, node);
 		i++;
 	}
-	ft_debug_print_stack(&stack);
-	ps_rotate(&stack);
-	ft_debug_print_stack(&stack);
-	ps_rrotate(&stack);
-	ft_debug_print_stack(&stack);
+	ps_stack_cluster_divide(&stack);
+	// ft_debug_print_stack(&stack);
+	// ps_rotate(&stack);
+	// ft_debug_print_stack(&stack);
+	// ps_rrotate(&stack);
+	// ft_debug_print_stack(&stack);
 	ps_stack_free(&stack);
 	return (0);	
 }

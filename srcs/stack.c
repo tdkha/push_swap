@@ -6,7 +6,7 @@
 /*   By: ktieu <ktieu@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 11:17:59 by ktieu             #+#    #+#             */
-/*   Updated: 2024/06/26 16:03:46 by ktieu            ###   ########.fr       */
+/*   Updated: 2024/06/27 12:20:10 by ktieu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ t_ps_stack	ps_stack_init(void)
 	t_ps_stack	res;
 
 	res.size = 0;
+	res.cluster_count = 0;
 	res.head = NULL;
 	res.tail = NULL;
 	return (res);
@@ -57,4 +58,9 @@ int ps_stack_free(t_ps_stack *stack)
 	stack->tail = NULL;
 	stack->size = 0;
 	return (1);
+}
+
+int	ps_stack_get_clusters(t_ps_stack *stack)
+{
+	stack->cluster_count = stack->size;
 }

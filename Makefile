@@ -16,7 +16,8 @@ SRC_FILES		=	./srcs/main.c \
 					./srcs/stack_action_swap.c \
 					./srcs/stack_action_rotate.c \
 					./srcs/stack_action_rrotate.c \
-					./srcs/stack_action_push.c
+					./srcs/stack_action_push.c \
+					./srcs/stack_utils.c
 
 
 O_DIR			=	obj

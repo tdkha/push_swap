@@ -1,22 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   algo_utils.c                                       :+:      :+:    :+:   */
+/*   algo.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ktieu <ktieu@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/06/28 13:29:19 by ktieu             #+#    #+#             */
-/*   Updated: 2024/06/28 13:32:17 by ktieu            ###   ########.fr       */
+/*   Created: 2024/06/28 13:30:26 by ktieu             #+#    #+#             */
+/*   Updated: 2024/06/28 13:32:01 by ktieu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/algo.h"
 
-void	swap(int* a, int* b) 
-{ 
-	int	temp;
+#ifndef ALGO_H
+# define ALGO_H
 
-	temp = *a; 
-	*a = *b; 
-	*b = temp; 
-} 
+#include "../libft/libft.h"
+
+void	swap(int* a, int* b) ;
+void	quick_sort(int *arr, int low, int high);
+
+#endif
