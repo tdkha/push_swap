@@ -6,14 +6,15 @@
 /*   By: ktieu <ktieu@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 16:12:38 by ktieu             #+#    #+#             */
-/*   Updated: 2024/06/27 09:43:08 by ktieu            ###   ########.fr       */
+/*   Updated: 2024/07/01 00:05:19 by ktieu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/stack.h"
 
-int	ps_swap(t_ps_stack *stack)
+inline int	ps_swap(t_ps_stack *stack)
 {
+	printf("swap: %d\n", stack->tail->value);
 	t_ps_node	*tail_node;
 	t_ps_node	*prev_node;
 	t_ps_node	*prev_prev_node;
@@ -40,7 +41,7 @@ int	ps_swap(t_ps_stack *stack)
 	return (1);
 }
 
-int	ps_swap2(t_ps_stack *a, t_ps_stack *b)
+inline int	ps_swap2(t_ps_stack *a, t_ps_stack *b)
 {
 	int	res;
 

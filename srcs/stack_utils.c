@@ -6,45 +6,50 @@
 /*   By: ktieu <ktieu@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/27 12:20:14 by ktieu             #+#    #+#             */
-/*   Updated: 2024/06/28 13:27:02 by ktieu            ###   ########.fr       */
+/*   Updated: 2024/06/30 19:48:28 by ktieu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/stack.h"
 
-static inline int stack_to_arr(t_ps_stack *stack, int *arr)
-{
-	int			i;
-	t_ps_node	*node;
 
-	if (stack->size <= 0)
-		return (0);
-	i = 0;
-	node = stack->head;
-	while (node)
-	{
-		arr[i] = node->value;
-		node = node->next;
-		i++;
-	}
-	return (1);
-}
 
-int	ps_stack_cluster_divide(t_ps_stack *stack)
+int	ps_stack_count_clusters(t_ps_stack *stack)
 {
-	int			*arr;
-	int			i;
-	t_ps_node	*node;
+	t_ps_node	*cur_node;
+	int			*check;
+	int			count;
+	int			cluster_to_index;
 	
-	arr = (int *) malloc (sizeof(int) * stack->size);
-	if (!arr)
-		return (-1);
-	if (stack_to_arr(stack, arr) == 0)
-		return (0);
-	for (i = 0; i < stack->size; i++)
+	check = (int *) malloc (sizeof(int) * (stack->max_clusters));
+	if (!check)
 	{
-		printf("%d ", arr[i]);
+		ft_printf_fd(2, "push_swap: Malloc error in <ps_stack_count_clusters>\n");
+		exit(1);
 	}
-	printf("\n");
-	return (1);
+	count = 0;
+	if (!stack->tail)
+		return (0);
+
+	for (int i = 0; i < stack->max_clusters; i++)
+	{
+		check[i] = 0;
+	}
+	cur_node = stack->head;
+	while (cur_node)
+	{
+		cluster_to_index = cur_node->cluster - 1;
+		if (cluster_to_index >= 0 && cluster_to_index < 3)
+		{
+			if (check[cluster_to_index] == 0)
+			{
+				check[cluster_to_index] = 1;
+				count++;
+			}
+		}
+		cur_node = cur_node->next;
+	}
+	return (count);
 }
+
+

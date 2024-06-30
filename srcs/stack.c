@@ -6,12 +6,15 @@
 /*   By: ktieu <ktieu@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 11:17:59 by ktieu             #+#    #+#             */
-/*   Updated: 2024/06/27 12:20:10 by ktieu            ###   ########.fr       */
+/*   Updated: 2024/06/30 19:14:06 by ktieu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/stack.h"
 
+/**
+ * Initialize a struct <t_ps_stack>
+ */
 t_ps_stack	ps_stack_init(void)
 {
 	t_ps_stack	res;
@@ -23,6 +26,9 @@ t_ps_stack	ps_stack_init(void)
 	return (res);
 }
 
+/**
+ * Push new <node> to the top of the stack
+ */
 int	ps_stack_push(t_ps_stack *stack, t_ps_node *to_push)
 {
 	if (!to_push)
@@ -42,6 +48,9 @@ int	ps_stack_push(t_ps_stack *stack, t_ps_node *to_push)
 	return (1);
 }
 
+/**
+ * Free memory regarding a struct <t_ps_stack>
+ */
 int ps_stack_free(t_ps_stack *stack)
 {
 	t_ps_node	*cur_node;
@@ -60,7 +69,3 @@ int ps_stack_free(t_ps_stack *stack)
 	return (1);
 }
 
-int	ps_stack_get_clusters(t_ps_stack *stack)
-{
-	stack->cluster_count = stack->size;
-}

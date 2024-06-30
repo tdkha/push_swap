@@ -6,7 +6,7 @@
 /*   By: ktieu <ktieu@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 11:54:23 by ktieu             #+#    #+#             */
-/*   Updated: 2024/06/27 08:35:07 by ktieu            ###   ########.fr       */
+/*   Updated: 2024/06/29 16:06:29 by ktieu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,25 @@
 # define PUSH_SWAP_H
 
 #include "./stack.h"
+#include "./algo.h"
 
-void	ft_arg_check(int ac, char **av);
+/*+------------------------------------------------------------+*/
+//	Argument check
+/*+------------------------------------------------------------+*/
+void		ft_arg_check(int ac, char **av);
+
+/*+------------------------------------------------------------+*/
+//	Argument parsing
+/*+------------------------------------------------------------+*/
+
+int			*ft_arg_parse_to_arr(int ac, char **av, int *arr);
+t_ps_stack	*ft_arg_parse_to_stack(
+				int ac, char **av,
+				int *arr, t_ps_stack *stack);
+
+/*+------------------------------------------------------------+*/
+//	Program util functions
+/*+------------------------------------------------------------+*/
+void		ft_exit(char *msg, int exitcode);
 
 #endif

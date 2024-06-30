@@ -6,36 +6,38 @@
 /*   By: ktieu <ktieu@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 16:12:55 by ktieu             #+#    #+#             */
-/*   Updated: 2024/06/27 09:44:15 by ktieu            ###   ########.fr       */
+/*   Updated: 2024/07/01 00:09:58 by ktieu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/stack.h"
 
 /**
- * shift up, the hea becomes the tail
+ * shift up, the tail becomes the head
+ * Trên xuống dưới
 */
-int ps_rotate(t_ps_stack *stack)
+inline int ps_rotate(t_ps_stack *stack)
 {
-	t_ps_node	*head_node;
-	t_ps_node	*next_node;
+	printf("rotate: %d\n", stack->tail->value);
+	t_ps_node *tail_node;
+	t_ps_node *prev_node;
 
 	if (stack->size < 2 || !stack->tail)
 		return (0);
-	head_node = stack->head;
-	next_node = head_node->next;
-	// Unlink the head node
-	next_node->prev = NULL;
-	stack->head = next_node;
-	// Move the head node to the end (tail)
-	head_node->next = NULL;
-	head_node->prev = stack->tail;
-	stack->tail->next = head_node;
-	stack->tail = head_node;
+	tail_node = stack->tail;
+	prev_node = tail_node->prev;
+	// Unlink the tail node
+	prev_node->next = NULL;
+	stack->tail = prev_node;
+	// Move the tail node to the front (head)
+	tail_node->prev = NULL;
+	tail_node->next = stack->head;
+	stack->head->prev = tail_node;
+	stack->head = tail_node;
 	return (1);
 }
 
-int	ps_rotate2(t_ps_stack *a, t_ps_stack *b)
+inline int	ps_rotate2(t_ps_stack *a, t_ps_stack *b)
 {
 	int	res;
 
