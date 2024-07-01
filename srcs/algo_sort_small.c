@@ -6,7 +6,7 @@
 /*   By: ktieu <ktieu@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/01 00:12:23 by ktieu             #+#    #+#             */
-/*   Updated: 2024/07/01 00:35:06 by ktieu            ###   ########.fr       */
+/*   Updated: 2024/07/01 13:40:55 by ktieu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,19 +40,21 @@ static inline void mid_is_largest(t_ps_stack *a)
 
 void	ps_sort3(t_ps_stack *a)
 {
-	t_ps_node	*mide_mode;
-	
-	mide_mode = a->head->next;
+	t_ps_node	*mid_mode;
+
+	if (ps_stack_is_sorted(a) == 1)
+		return ;
+	mid_mode = a->head->next;
 	if (a->tail->value > a->head->value)
 	{
-		if (a->tail->value > mide_mode->value)
+		if (a->tail->value > mid_mode->value)
 			tail_is_largest(a);
 		else
 			mid_is_largest(a);
 	}
 	else
 	{
-		if (a->head->value > mide_mode->value)
+		if (a->head->value > mid_mode->value)
 			ps_swap(a);
 		else
 			mid_is_largest(a);

@@ -6,7 +6,7 @@
 /*   By: ktieu <ktieu@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 11:08:49 by ktieu             #+#    #+#             */
-/*   Updated: 2024/06/30 19:42:12 by ktieu            ###   ########.fr       */
+/*   Updated: 2024/07/01 17:47:51 by ktieu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,9 +32,6 @@ typedef struct s_ps_stack
 	size_t		size;
 	int			max_clusters;
 	int			cluster_count;
-	int			cluster1_max;
-	int			cluster2_max;
-	int			cluster3_max;
 	t_ps_node	*head;
 	t_ps_node	*tail;
 }	t_ps_stack;
@@ -75,8 +72,13 @@ void		ps_node_link(
 //	STACK UTILS
 /*+------------------------------------------------------------+*/
 
-int		ps_stack_count_clusters(t_ps_stack *stack);
-
+int			ps_stack_count_clusters(t_ps_stack *stack);
+int			ps_stack_find_cluster(
+				t_ps_stack *stack,
+				int cluster);
+int			ps_stack_find_clusters(
+				t_ps_stack *stack,
+				int c1, int c2);
 /*+------------------------------------------------------------+*/
 //	STACK
 /*+------------------------------------------------------------+*/

@@ -6,117 +6,189 @@
 /*   By: ktieu <ktieu@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/30 16:10:41 by ktieu             #+#    #+#             */
-/*   Updated: 2024/07/01 00:40:13 by ktieu            ###   ########.fr       */
+/*   Updated: 2024/07/01 22:33:10 by ktieu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/algo.h"
 
-// static inline void ps_phase1_cluster12(t_ps_stack *a, t_ps_stack *b)
-// {
-// 	t_ps_node	*tail_a;
-// 	t_ps_node	*tail_b;
+static inline void sort_large_phase1(
+    t_ps_stack *a,
+    t_ps_stack *b,
+    int *min_cluster,
+    int *max_cluster)
+{
+	int	max_iter;
 
-// 	tail_a = a->tail;
-// 	ps_push(a, b);
-// 	tail_b = b->tail;
-// 	if (tail_b && tail_b->cluster == 2 && b->size >= 2)
-// 	{
-// 		ps_rotate(b);
-// 	}
-// }
+	max_iter = a->max_clusters / 2;
+	while (max_iter > 0 && a->size > 3)
+	{
+		if (maintain_three_highest(a))
+			continue;
+		if (!check_to_push(a, *min_cluster, *max_cluster))
+		{
+			max_iter--;
+			*min_cluster += 2;
+			*max_cluster += 2;
+			continue;
+		}
+		if (a->tail->cluster == *min_cluster)
+		{
+			ps_push(a, b);
+			ps_rotate(b);
+		}
+		else if (a->tail->cluster == *max_cluster)
+			ps_push(a, b);
+		else
+			ps_rotate(a);
+	}
+}
 
-// static inline void ps_phase1_cluster3(t_ps_stack *a, t_ps_stack *b)
-// {
-// 	t_ps_node	*tail_a;
-// 	t_ps_node	*head_a;
-
-// 	tail_a = a->tail;
-// 	head_a = a->head;
-// 	ps_rotate(a);
-// 	if (head_a->cluster == 1 || head_a->cluster == 2)
-// 	{
-// 		ps_push(a, b);
-// 	}
-// }
-
-// void	ps_sort_large_phase1(t_ps_stack *a, t_ps_stack *b)
-// {
-// 	t_ps_node	*tail_a;
-// 	int			value_a;
-
-// 	tail_a = a->tail;
-// 	value_a = tail_a->value;
-// 	while (ps_stack_count_clusters(a) != 1)
-// 	{
-// 		if (tail_a->cluster == 1 || tail_a->cluster == 2)
-// 			ps_phase1_cluster12(a, b);
-// 		else
-// 			ps_phase1_cluster3(a, b);
-// 		tail_a = a->tail;
-// 		ft_debug_print_stacks(a, b);
-// 	}
-// }
-
-int	check_clusters(t_ps_stack *stack, int cluster1, int cluster2)
+static inline int find_insert_position(t_ps_stack *stack, int value)
 {
 	t_ps_node	*cur_node;
+	int			position;
 
-	cur_node = stack->head;
+	cur_node = stack->tail;
+	position = 0;
+	if (cur_node->value < cur_node->prev->value)
+		return (0);
 	while (cur_node)
 	{
-		if (cur_node->cluster == cluster1)
-		{
-			return (1);
-		}
-		else if (cur_node->cluster == cluster2)
-		{
-			return (1);
-		}
-		cur_node = cur_node->next;
+		if (cur_node->value > value)
+			break;
+		cur_node = cur_node->prev;
+		position++;
 	}
-	return (0);
+	return (position);
 }
 
-void sort_large_phase1(t_ps_stack *a, t_ps_stack *b)
+static inline void	adjust_top(
+	t_ps_stack *a,
+	int iteration,
+	t_ps_node *pivot_node)
 {
-    int iter;
-    int max_iter;
-    int min_cluster;
-    int max_cluster;
-
-    iter = 1;
-    max_iter = a->max_clusters / 2;
-    min_cluster = 1;
-    max_cluster = 2;
-    while (iter <= max_iter)
-	{
-        if (!check_clusters(a, min_cluster, max_cluster))
-		{
-            iter++;
-            min_cluster += 2;
-            max_cluster += 2;
-            continue;
-        }
-        if (a->tail->cluster == min_cluster)
-		{
-            ps_push(a, b);
-            ps_rotate(b);
-        }
-		else if (a->tail->cluster == max_cluster)
-            ps_push(a, b);
-        else
-            ps_rotate(a);
-    }
-}
-
-void	sort_large_phase2(t_ps_stack *a, t_ps_stack *b)
-{
+	int	iter;
 	
+	iter = iteration;
+	printf("iter: %d\n", iter);
+	
+	if (iter == 0)
+		return;
+	while (iter > 0)
+	{
+		ps_swap(a);
+		ps_rotate(a);
+		iter--;
+	}
+	iter = iteration + 1;
+	while (iter > 0)
+	{
+		ps_rrotate(a);
+		iter--;
+	}	
+}
+
+/**
+ * Formula: ra -> sa -> ra -> sa -> ... -> (ra * n)
+ * Description:
+ * 	<1>	Do <rotate> and <swap> for n times
+ * 	<2> Rotate n + 1 times (because of the newly added node)
+ */
+static inline void	adjust_bot(
+	t_ps_stack *a,
+	int iteration,
+	t_ps_node *pivot_node)
+{
+	int	iter;
+	
+	iter = iteration;
+	if (iter == 0)
+		return;
+	if (pivot_node->value > a->head->value)
+	{
+		ps_rotate(a);
+		return ;
+	}
+	while (iter > 0)
+	{
+		ps_rrotate(a);
+		ps_swap(a);
+		iter--;
+	}
+	iter = iteration + 1;
+	while (iter > 0)
+	{
+		ps_rotate(a);
+		iter--;
+	}	
+}
+
+static inline void adjust_position(
+	t_ps_stack *a,
+	int index,
+	t_ps_node *pivot_node)
+{
+	int	iteration; 
+
+	iteration = 0;
+	if (index < a->size / 2)
+	{
+		iteration = index;
+		adjust_top(a, iteration, pivot_node);
+	}
+	else
+	{
+		iteration = a->size - index;
+		adjust_bot(a, iteration, pivot_node);
+	}
+}
+
+static inline void	sort_large_phase2(
+    t_ps_stack *a,
+    t_ps_stack *b,
+	int *min_cluster,
+	int *max_cluster
+)
+{
+	t_ps_node	*pivot_node;
+	int			insert_pos;
+	int			clusters_to_push;
+	
+	clusters_to_push = ps_stack_find_clusters(b, *min_cluster, *max_cluster);
+	printf("Cluster to push: %d\n", clusters_to_push);
+	while (clusters_to_push > 0 && (a->tail->cluster == 4 || a->tail->cluster == 3))
+	{
+		if (clusters_to_push == 1)
+		{
+			// push from the bottom 
+			ps_rrotate(b);
+			ps_push(b, a);
+		}
+		else if (clusters_to_push == 2)
+		{
+			// push from the top
+			ps_push(b, a);
+		}
+		pivot_node = a->tail;
+		insert_pos = find_insert_position(a, pivot_node->value);
+		printf("Insert poistion is: %d\n", insert_pos);
+		adjust_position(a, insert_pos, pivot_node);
+		clusters_to_push = ps_stack_find_clusters(b, *min_cluster, *max_cluster);
+		ft_debug_print_stacks(a, b);
+	}
 }
 
 
 void	ps_sort_large(t_ps_stack *a, t_ps_stack *b)
 {
-	sort_large_phase1(a, b);
+	int min_cluster;
+	int max_cluster;
+
+	min_cluster = 1;
+	max_cluster = 2;
+	sort_large_phase1(a, b, &min_cluster, &max_cluster);
+	if (a->size == 3)
+		ps_sort3(a);
+	sort_large_phase2(a, b, &min_cluster, &max_cluster);
 }

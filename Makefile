@@ -22,7 +22,7 @@ SRC_FILES		=	./srcs/main.c \
 					./srcs/stack_utils.c \
 					./srcs/algo_sort_small.c \
 					./srcs/algo_sort_large.c \
-					./srcs/algo_sort_large2.c \
+					./srcs/algo_sort_large_utils.c \
 					./srcs/algo_utils.c \
 					./srcs/algo.c
 
@@ -51,7 +51,7 @@ bonus: .bonus
 
 clean:
 	${MAKE} -C ${LIBFT} clean
-	rm -rf ${O_FILES}
+	rm -rf ${O_DIR}
 	@rm -f .bonus .mandatory .libft
 
 fclean: clean
