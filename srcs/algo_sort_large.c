@@ -6,7 +6,7 @@
 /*   By: ktieu <ktieu@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/30 16:10:41 by ktieu             #+#    #+#             */
-/*   Updated: 2024/07/01 22:33:10 by ktieu            ###   ########.fr       */
+/*   Updated: 2024/07/02 06:54:02 by ktieu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,17 +71,20 @@ static inline void	adjust_top(
 	int	iter;
 	
 	iter = iteration;
-	printf("iter: %d\n", iter);
-	
 	if (iter == 0)
 		return;
+	else if (iter == 1)
+	{
+		ps_swap(a);
+		return;
+	}
 	while (iter > 0)
 	{
 		ps_swap(a);
 		ps_rotate(a);
 		iter--;
 	}
-	iter = iteration + 1;
+	iter = iteration;
 	while (iter > 0)
 	{
 		ps_rrotate(a);
@@ -124,6 +127,11 @@ static inline void	adjust_bot(
 	}	
 }
 
+/**
+ * Function to adjust the position of the newly added node at the top of the stack
+ * Note: since we add a new node at the top, 
+ * the <iteration> for adjust_top must be subtracted by 1
+ */
 static inline void adjust_position(
 	t_ps_stack *a,
 	int index,
@@ -134,7 +142,7 @@ static inline void adjust_position(
 	iteration = 0;
 	if (index < a->size / 2)
 	{
-		iteration = index;
+		iteration = index - 1;
 		adjust_top(a, iteration, pivot_node);
 	}
 	else
@@ -156,25 +164,24 @@ static inline void	sort_large_phase2(
 	int			clusters_to_push;
 	
 	clusters_to_push = ps_stack_find_clusters(b, *min_cluster, *max_cluster);
-	printf("Cluster to push: %d\n", clusters_to_push);
-	while (clusters_to_push > 0 && (a->tail->cluster == 4 || a->tail->cluster == 3))
+	while (clusters_to_push > 0 && (a->tail->cluster == 4 || a->tail->cluster == 3 || a->tail->cluster == 2 || a->tail->cluster == 1))
 	{
 		if (clusters_to_push == 1)
 		{
-			// push from the bottom 
 			ps_rrotate(b);
 			ps_push(b, a);
 		}
 		else if (clusters_to_push == 2)
-		{
-			// push from the top
 			ps_push(b, a);
-		}
 		pivot_node = a->tail;
 		insert_pos = find_insert_position(a, pivot_node->value);
-		printf("Insert poistion is: %d\n", insert_pos);
 		adjust_position(a, insert_pos, pivot_node);
 		clusters_to_push = ps_stack_find_clusters(b, *min_cluster, *max_cluster);
+		{
+			*min_cluster -= 2;
+			*max_cluster -= 2;
+			clusters_to_push = 2;
+		}
 		ft_debug_print_stacks(a, b);
 	}
 }
