@@ -6,29 +6,29 @@
 /*   By: ktieu <ktieu@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/27 09:47:21 by ktieu             #+#    #+#             */
-/*   Updated: 2024/07/01 00:04:28 by ktieu            ###   ########.fr       */
+/*   Updated: 2024/07/03 00:13:57 by ktieu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/stack.h"
 
-inline int	ps_push(t_ps_stack *from, t_ps_stack *to)
+inline int	ps_push(t_stack *from, t_stack *to)
 {
-	printf("push %d\n", from->tail->value);
-	t_ps_node	*to_add_node;
+	printf("push %d\n", from->top->value);
+	t_index_node	*to_add_node;
 
-	if (from->size < 1 || !from->tail)
+	if (from->size < 1 || !from->top)
 		return (0);
-	to_add_node = from->tail;
-	if (from->tail->prev)
+	to_add_node = from->top;
+	if (from->top->prev)
 	{
-		from->tail = from->tail->prev;
-		from->tail->next = NULL;
+		from->top = from->top->prev;
+		from->top->next = NULL;
 	}
 	else
 	{
-		from->head = NULL;
-		from->tail = NULL;
+		from->bot = NULL;
+		from->top = NULL;
 	}
 	to_add_node->prev = NULL;
 	from->size--;

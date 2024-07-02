@@ -6,38 +6,38 @@
 /*   By: ktieu <ktieu@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 16:13:32 by ktieu             #+#    #+#             */
-/*   Updated: 2024/07/01 00:09:55 by ktieu            ###   ########.fr       */
+/*   Updated: 2024/07/03 00:13:57 by ktieu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/stack.h"
 
 /**
- * shift down, the head becomes the tail
+ * shift down, the head becomes the top
  * Dưới lên trên
 */
-inline int ps_rrotate(t_ps_stack *stack)
+inline int ps_rrotate(t_stack *stack)
 {
-	printf("rrotate: %d\n", stack->tail->value);
-	t_ps_node	*head_node;
-	t_ps_node	*next_node;
+	printf("rrotate: %d\n", stack->top->value);
+	t_index_node	*head_node;
+	t_index_node	*next_node;
 
-	if (stack->size < 2 || !stack->tail)
+	if (stack->size < 2 || !stack->top)
 		return (0);
-	head_node = stack->head;
+	head_node = stack->bot;
 	next_node = head_node->next;
 	// Unlink the head node
 	next_node->prev = NULL;
-	stack->head = next_node;
-	// Move the head node to the end (tail)
+	stack->bot = next_node;
+	// Move the head node to the end (top)
 	head_node->next = NULL;
-	head_node->prev = stack->tail;
-	stack->tail->next = head_node;
-	stack->tail = head_node;
+	head_node->prev = stack->top;
+	stack->top->next = head_node;
+	stack->top = head_node;
 	return (1);
 }
 
-inline int	ps_rrotate2(t_ps_stack *a, t_ps_stack *b)
+inline int	ps_rrotate2(t_stack *a, t_stack *b)
 {
 	int	res;
 

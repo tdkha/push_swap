@@ -6,22 +6,22 @@
 /*   By: ktieu <ktieu@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 16:12:38 by ktieu             #+#    #+#             */
-/*   Updated: 2024/07/01 00:05:19 by ktieu            ###   ########.fr       */
+/*   Updated: 2024/07/03 00:13:57 by ktieu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/stack.h"
 
-inline int	ps_swap(t_ps_stack *stack)
+inline int	ps_swap(t_stack *stack)
 {
-	printf("swap: %d\n", stack->tail->value);
-	t_ps_node	*tail_node;
-	t_ps_node	*prev_node;
-	t_ps_node	*prev_prev_node;
+	printf("swap: %d\n", stack->top->value);
+	t_index_node	*tail_node;
+	t_index_node	*prev_node;
+	t_index_node	*prev_prev_node;
 
-	if (stack->size < 2 || !stack->tail)
+	if (stack->size < 2 || !stack->top)
 		return (0);
-	tail_node = stack->tail;
+	tail_node = stack->top;
 	prev_node = tail_node->prev;
 	prev_prev_node = prev_node->prev;
 	// swapping tail_node and prev_node
@@ -35,13 +35,13 @@ inline int	ps_swap(t_ps_stack *stack)
 	if (prev_prev_node)
 		prev_prev_node->next = tail_node;
 	else
-		stack->head = tail_node;
+		stack->bot = tail_node;
 
-	stack->tail = prev_node;
+	stack->top = prev_node;
 	return (1);
 }
 
-inline int	ps_swap2(t_ps_stack *a, t_ps_stack *b)
+inline int	ps_swap2(t_stack *a, t_stack *b)
 {
 	int	res;
 

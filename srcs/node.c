@@ -5,50 +5,28 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: ktieu <ktieu@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/06/26 11:20:49 by ktieu             #+#    #+#             */
-/*   Updated: 2024/06/30 15:11:53 by ktieu            ###   ########.fr       */
+/*   Created: 2024/07/02 22:37:13 by ktieu             #+#    #+#             */
+/*   Updated: 2024/07/03 00:12:43 by ktieu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/stack.h"
+#include "../includes/push_swap.h"
 
-t_ps_node	*ps_node_init(int value)
+
+
+t_index_node	*ps_node_init(int value)
 {
-	t_ps_node	*res;
+	t_index_node *node;
 
-	res = (t_ps_node *) malloc (sizeof(t_ps_node));
-	res->value = value;
-	res->prev = NULL;
-	res->next = NULL;
-	return (res);
-}
-
-void	ps_node_link_bidirection(
-	t_ps_node *node,
-	t_ps_node *prev,
-	t_ps_node *next
-)
-{
-	node->prev = prev;
-	node->next = next;
-	prev->next = node;
-	next->prev = node;
-}
-
-void	ps_node_link(
-	t_ps_node *node,
-	t_ps_node *to_link,
-	int is_linking_next
-)
-{
-	if (is_linking_next)
+	node = (t_index_node *) malloc (sizeof(t_index_node));
+	if (!node)
 	{
-		node->next = to_link;
-		to_link->prev = node;
+		ft_exit("Failed to malloc a <t_index_node> instance", 1);
 	}
-	else
-	{
-		node->prev = to_link;
-		to_link->next = node;
-	}
+	node->value = value;
+	node->in_pair = 0;
+	node->next = NULL;
+	node->prev = NULL;
+	return(node);
 }

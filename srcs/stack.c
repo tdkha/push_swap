@@ -6,66 +6,80 @@
 /*   By: ktieu <ktieu@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 11:17:59 by ktieu             #+#    #+#             */
-/*   Updated: 2024/06/30 19:14:06 by ktieu            ###   ########.fr       */
+/*   Updated: 2024/07/03 00:33:09 by ktieu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/stack.h"
+#include "../includes/push_swap.h"
 
 /**
- * Initialize a struct <t_ps_stack>
+ * Initialize a struct <t_stack>
  */
-t_ps_stack	ps_stack_init(void)
+t_stack	ps_stack_init(int size)
 {
-	t_ps_stack	res;
+	t_stack	res;
 
-	res.size = 0;
-	res.cluster_count = 0;
-	res.head = NULL;
-	res.tail = NULL;
+	res.size = size;
+	res.pairs = 3;
+	res.top = NULL;
+	res.bot = NULL;
 	return (res);
 }
 
 /**
- * Push new <node> to the top of the stack
+ * Push new <to_push> to the top of the stack
  */
-int	ps_stack_push(t_ps_stack *stack, t_ps_node *to_push)
+void	ps_stack_push(t_stack *stack, t_index_node *to_push)
 {
-	if (!to_push)
-		return(0);
-	if (!stack->head)
+	if (!stack->bot)
 	{
-		stack->head = to_push;
-		stack->tail = to_push;
+		stack->bot = to_push;
+		stack->top = to_push;
 	}
 	else
 	{
-		stack->tail->next = to_push;
-		to_push->prev = stack->tail;
-		stack->tail = to_push;
+		stack->top->next = to_push;
+		to_push->prev = stack->top;
+		stack->top = to_push;
 	}
 	stack->size++;
-	return (1);
 }
 
 /**
- * Free memory regarding a struct <t_ps_stack>
+ * Pop the top element from the stack
  */
-int ps_stack_free(t_ps_stack *stack)
+t_index_node *ps_stack_pop(t_stack *stack)
 {
-	t_ps_node	*cur_node;
-	t_ps_node	*tmp_node;
+	t_index_node	*popped;
+	t_index_node	*top_node;
 
-	cur_node = stack->head;
+	if (!stack || stack->size == 0)
+		return (NULL);
+	popped = stack->top;
+	stack->top->prev->next = NULL;
+	stack->top = popped->prev;
+	popped->prev = NULL;
+	stack->size--;
+	return (popped);
+}
+
+/**
+ * Free memory regarding a struct <t_stack>
+ */
+void ps_stack_free(t_stack *stack)
+{
+	t_index_node	*cur_node;
+	t_index_node	*tmp_node;
+
+	cur_node = stack->bot;
 	while (cur_node)
 	{
 		tmp_node = cur_node->next;
 		free(cur_node);
 		cur_node = tmp_node;
 	}
-	stack->head = NULL;
-	stack->tail = NULL;
+	stack->bot = NULL;
+	stack->top = NULL;
 	stack->size = 0;
-	return (1);
 }
-

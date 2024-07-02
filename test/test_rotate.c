@@ -6,7 +6,7 @@
 /*   By: ktieu <ktieu@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/27 08:33:26 by ktieu             #+#    #+#             */
-/*   Updated: 2024/06/27 09:45:12 by ktieu            ###   ########.fr       */
+/*   Updated: 2024/07/03 00:33:24 by ktieu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,12 @@
 
 int	main(int ac, char **av)
 {
-	t_ps_stack	stack;
-	t_ps_node	*node;
+	t_stack	stack;
+	t_index_node	*node;
 	int			i = 0;
 
 	ft_arg_check(ac, av);
-	stack = ps_stack_init();
+	stack = ps_stack_init(ac - 1);
 	while (i < 3)
 	{
 		node = ps_node_init(i);

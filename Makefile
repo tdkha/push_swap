@@ -10,21 +10,19 @@ LIB_A			=	$(LIBFT)/libft.a
 
 SRC_FILES		=	./srcs/main.c \
 					./srcs/exit.c \
-					./srcs/debug.c \
 					./srcs/args.c \
 					./srcs/parse.c \
 					./srcs/stack.c \
 					./srcs/node.c \
-					./srcs/stack_action_swap.c \
-					./srcs/stack_action_rotate.c \
-					./srcs/stack_action_rrotate.c \
-					./srcs/stack_action_push.c \
 					./srcs/stack_utils.c \
-					./srcs/algo_sort_small.c \
-					./srcs/algo_sort_large.c \
-					./srcs/algo_sort_large_utils.c \
-					./srcs/algo_utils.c \
-					./srcs/algo.c
+ 					./srcs/algo_utils.c \
+ 					./srcs/algo.c \
+					./srcs/debug.c 
+
+
+
+			
+
 
 O_DIR			=	obj
 O_FILES			= $(addprefix $(O_DIR)/, $(notdir ${SRC_FILES:.c=.o}))
@@ -59,3 +57,10 @@ fclean: clean
 	rm -rf ${NAME}
 
 .PHONY: all clean fclean re
+
+
+# 					./srcs/stack_action_swap.c \
+# 					./srcs/stack_action_rotate.c \
+# 					./srcs/stack_action_rrotate.c \
+# 					./srcs/stack_action_push.c \
+# 										./srcs/algo_utils.c \
