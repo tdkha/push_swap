@@ -58,7 +58,3 @@ fclean: clean
 	rm -rf ${NAME}
 
 .PHONY: all clean fclean re
-
-
-
-# 										./srcs/algo_utils.c \
