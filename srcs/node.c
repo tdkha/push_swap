@@ -6,14 +6,12 @@
 /*   By: ktieu <ktieu@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/02 22:37:13 by ktieu             #+#    #+#             */
-/*   Updated: 2024/07/03 00:12:43 by ktieu            ###   ########.fr       */
+/*   Updated: 2024/07/03 00:39:07 by ktieu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/stack.h"
 #include "../includes/push_swap.h"
-
-
 
 t_index_node	*ps_node_init(int value)
 {

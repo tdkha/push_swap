@@ -9,6 +9,7 @@
 		"random": "c",
 		"limits": "c",
 		"algorithm": "c",
-		"libft.h": "c"
+		"libft.h": "c",
+		"algo.h": "c"
 	}
 }

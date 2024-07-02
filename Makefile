@@ -15,13 +15,14 @@ SRC_FILES		=	./srcs/main.c \
 					./srcs/stack.c \
 					./srcs/node.c \
 					./srcs/stack_utils.c \
- 					./srcs/algo_utils.c \
+					./srcs/stack_action_swap.c \
+					./srcs/stack_action_rotate.c \
+					./srcs/stack_action_rrotate.c \
+					./srcs/stack_action_push.c \
+					./srcs/algo_sort3.c \
+					./srcs/algo_utils.c \
  					./srcs/algo.c \
 					./srcs/debug.c 
-
-
-
-			
 
 
 O_DIR			=	obj
@@ -59,8 +60,5 @@ fclean: clean
 .PHONY: all clean fclean re
 
 
-# 					./srcs/stack_action_swap.c \
-# 					./srcs/stack_action_rotate.c \
-# 					./srcs/stack_action_rrotate.c \
-# 					./srcs/stack_action_push.c \
+
 # 										./srcs/algo_utils.c \

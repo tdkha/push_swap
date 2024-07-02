@@ -6,7 +6,7 @@
 /*   By: ktieu <ktieu@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 11:53:52 by ktieu             #+#    #+#             */
-/*   Updated: 2024/07/03 00:34:07 by ktieu            ###   ########.fr       */
+/*   Updated: 2024/07/03 00:48:41 by ktieu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ int	main(int ac, char **av)
 	ft_arg_parse(ac, av, sorted_array, &stack_a);
 	
 
-   
+   	ps_sort(&stack_a, &stack_b);
 	
 	ft_debug_print_stacks(&stack_a, &stack_b);
 	ft_cleanup(sorted_array, &stack_a, &stack_b);
