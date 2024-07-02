@@ -6,7 +6,7 @@
 /*   By: ktieu <ktieu@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 11:08:49 by ktieu             #+#    #+#             */
-/*   Updated: 2024/07/01 17:47:51 by ktieu            ###   ########.fr       */
+/*   Updated: 2024/07/02 11:37:55 by ktieu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,22 +35,6 @@ typedef struct s_ps_stack
 	t_ps_node	*head;
 	t_ps_node	*tail;
 }	t_ps_stack;
-
-typedef enum e_ps_action
-{
-	SA,
-	SB,
-	SS,
-	PA,
-	PB,
-	RA,
-	RB,
-	RR,
-	RRA,
-	RRB,
-	RRR
-} e_ps_action;
-
 
 /*+------------------------------------------------------------+*/
 //	NODE
@@ -99,7 +83,8 @@ int			ps_rrotate(t_ps_stack *stack);
 int			ps_push(t_ps_stack *from, t_ps_stack *to);
 int			ps_swap2(t_ps_stack *a, t_ps_stack *b);
 int			ps_rotate2(t_ps_stack *a, t_ps_stack *b);
-
+int			ps_rrotate2(t_ps_stack *a, t_ps_stack *b);
+int			ps_swap_special(t_ps_stack *a, t_ps_stack *b);;
 /*+------------------------------------------------------------+*/
 //	DEBUG
 /*+------------------------------------------------------------+*/

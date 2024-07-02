@@ -6,7 +6,7 @@
 /*   By: ktieu <ktieu@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/29 16:03:49 by ktieu             #+#    #+#             */
-/*   Updated: 2024/07/02 09:48:24 by ktieu            ###   ########.fr       */
+/*   Updated: 2024/07/02 14:27:42 by ktieu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,11 +71,13 @@ static inline void ft_calculate_cluster_ranges(int ac, t_ps_stack *stack)
 	if (array_size <= 3	)
 		stack->max_clusters = 1;
 	else if (array_size <= 10)
-		stack->max_clusters = 4;
+		stack->max_clusters = 2;
 	else if (array_size <= 20)
 		stack->max_clusters = 4;
-	else if (array_size <= 100)
+	else if (array_size >= 50 && array_size <= 100)
 		stack->max_clusters = 16;
+	else 
+		stack->max_clusters = 14;
 }
 /**
  * Parse program arguments to a stack.

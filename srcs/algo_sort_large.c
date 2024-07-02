@@ -6,7 +6,7 @@
 /*   By: ktieu <ktieu@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/30 16:10:41 by ktieu             #+#    #+#             */
-/*   Updated: 2024/07/02 09:30:37 by ktieu            ###   ########.fr       */
+/*   Updated: 2024/07/02 14:05:46 by ktieu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,29 +65,37 @@ static inline int find_insert_position(t_ps_stack *stack, int value)
 
 static inline void	adjust_top(
 	t_ps_stack *a,
+	t_ps_stack *b,
 	int iteration,
 	t_ps_node *pivot_node)
 {
 	int	iter;
 	
 	iter = iteration;
-	if (iter == 0)
+	// printf("Adjust top\n");
+	// printf("iter: %d\n", iteration);
+	if (iter <= 0)
 		return;
 	else if (iter == 1)
 	{
-		ps_swap(a);
+		ps_swap_special(a, b);
 		return;
 	}
 	while (iter > 0)
 	{
-		ps_swap(a);
+		ps_swap_special(a, b);
 		ps_rotate(a);
 		iter--;
 	}
 	iter = iteration;
 	while (iter > 0)
 	{
-		ps_rrotate(a);
+		if (b->head && pivot_node->cluster - 1 == b->head->cluster
+			&& b->tail->cluster != pivot_node->cluster
+		)
+			ps_rrotate2(a, b);
+		else
+			ps_rrotate(a);
 		iter--;
 	}	
 }
@@ -100,23 +108,30 @@ static inline void	adjust_top(
  */
 static inline void	adjust_bot(
 	t_ps_stack *a,
+	t_ps_stack *b,
 	int iteration,
 	t_ps_node *pivot_node)
 {
+	// printf("Adjust bot\n");
+	// printf("iter: %d\n", iteration);
 	int	iter;
 	
 	iter = iteration;
-	if (iter == 0)
-		return;
-	if (pivot_node->value > a->head->value)
+	
+	if (a->head && pivot_node->value > a->head->value)
 	{
 		ps_rotate(a);
 		return ;
 	}
+	if (iter == 0)
+		return;
 	while (iter > 0)
 	{
-		ps_rrotate(a);
-		ps_swap(a);
+		if (b->head && pivot_node->cluster - 1 == b->head->cluster)
+			ps_rrotate2(a, b);
+		else
+			ps_rrotate(a);
+		ps_swap_special(a, b);
 		iter--;
 	}
 	iter = iteration + 1;
@@ -134,21 +149,22 @@ static inline void	adjust_bot(
  */
 static inline void adjust_position(
 	t_ps_stack *a,
+	t_ps_stack *b,
 	int index,
 	t_ps_node *pivot_node)
 {
 	int	iteration; 
 
 	iteration = 0;
-	if (index < a->size / 2)
+	if (index <= (a->size / 2) + 1)
 	{
 		iteration = index - 1;
-		adjust_top(a, iteration, pivot_node);
+		adjust_top(a, b, iteration, pivot_node);
 	}
 	else
 	{
 		iteration = a->size - index;
-		adjust_bot(a, iteration, pivot_node);
+		adjust_bot(a, b, iteration, pivot_node);
 	}
 }
 
@@ -166,16 +182,38 @@ static inline void	sort_large_phase2(
 	clusters_to_push = ps_stack_find_clusters(b, *min_cluster, *max_cluster);
 	while (clusters_to_push > 0)
 	{
+		// ft_debug_print_stacks(a, b);
 		if (clusters_to_push == 1)
 		{
-			ps_rrotate(b);
-			ps_push(b, a);
+			if (b->tail->cluster == *min_cluster)
+				ps_push(b, a);
+			else
+			{
+				ps_rrotate(b);
+				ps_push(b, a);
+			}
 		}
 		else if (clusters_to_push == 2)
-			ps_push(b, a);
+		{
+			// find the less costly one to push
+			int cost;
+
+			if (b->tail->value > a->head->value)
+				ps_push(b, a);				
+			else
+				cost = b->tail->value - a->head->value;
+
+			if (cost > b->head->value - a->tail->value)
+			{
+				ps_rrotate(b);
+				ps_push(b, a);
+			}
+			else
+				ps_push(b, a);
+		}
 		pivot_node = a->tail;
 		insert_pos = find_insert_position(a, pivot_node->value);
-		adjust_position(a, insert_pos, pivot_node);
+		adjust_position(a, b, insert_pos, pivot_node);
 		clusters_to_push = ps_stack_find_clusters(b, *min_cluster, *max_cluster);
 		if (clusters_to_push == 0)
         {
@@ -183,6 +221,7 @@ static inline void	sort_large_phase2(
             *max_cluster -= 2;
             clusters_to_push = ps_stack_find_clusters(b, *min_cluster, *max_cluster);
         }
+		// ft_debug_print_stacks(a, b);
 	}
 }
 
