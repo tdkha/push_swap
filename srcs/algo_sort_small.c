@@ -6,7 +6,7 @@
 /*   By: ktieu <ktieu@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/01 00:12:23 by ktieu             #+#    #+#             */
-/*   Updated: 2024/07/01 13:40:55 by ktieu            ###   ########.fr       */
+/*   Updated: 2024/07/02 09:36:00 by ktieu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,12 +26,11 @@ static inline void mid_is_largest(t_ps_stack *a)
 	if (a->tail->value > a->head->value)
 	{
 		ps_rrotate(a);
-		ps_rrotate(a);
 		return;
 	}
 	else
 	{
-		ps_rotate(a);
+		ps_swap(a);
 		ps_rotate(a);
 		return;
 	}

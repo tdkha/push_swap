@@ -6,7 +6,7 @@
 /*   By: ktieu <ktieu@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/27 09:47:21 by ktieu             #+#    #+#             */
-/*   Updated: 2024/07/01 00:04:28 by ktieu            ###   ########.fr       */
+/*   Updated: 2024/07/02 09:05:28 by ktieu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,8 @@
 
 inline int	ps_push(t_ps_stack *from, t_ps_stack *to)
 {
-	printf("push %d\n", from->tail->value);
+	if (from->tail)
+		printf("push %d\n", from->tail->value);
 	t_ps_node	*to_add_node;
 
 	if (from->size < 1 || !from->tail)

@@ -6,7 +6,7 @@
 /*   By: ktieu <ktieu@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/30 16:10:41 by ktieu             #+#    #+#             */
-/*   Updated: 2024/07/02 06:54:02 by ktieu            ###   ########.fr       */
+/*   Updated: 2024/07/02 09:30:37 by ktieu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -164,7 +164,7 @@ static inline void	sort_large_phase2(
 	int			clusters_to_push;
 	
 	clusters_to_push = ps_stack_find_clusters(b, *min_cluster, *max_cluster);
-	while (clusters_to_push > 0 && (a->tail->cluster == 4 || a->tail->cluster == 3 || a->tail->cluster == 2 || a->tail->cluster == 1))
+	while (clusters_to_push > 0)
 	{
 		if (clusters_to_push == 1)
 		{
@@ -177,12 +177,12 @@ static inline void	sort_large_phase2(
 		insert_pos = find_insert_position(a, pivot_node->value);
 		adjust_position(a, insert_pos, pivot_node);
 		clusters_to_push = ps_stack_find_clusters(b, *min_cluster, *max_cluster);
-		{
-			*min_cluster -= 2;
-			*max_cluster -= 2;
-			clusters_to_push = 2;
-		}
-		ft_debug_print_stacks(a, b);
+		if (clusters_to_push == 0)
+        {
+            *min_cluster -= 2;
+            *max_cluster -= 2;
+            clusters_to_push = ps_stack_find_clusters(b, *min_cluster, *max_cluster);
+        }
 	}
 }
 

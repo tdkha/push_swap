@@ -6,7 +6,7 @@
 /*   By: ktieu <ktieu@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 11:53:52 by ktieu             #+#    #+#             */
-/*   Updated: 2024/07/01 16:27:43 by ktieu            ###   ########.fr       */
+/*   Updated: 2024/07/02 09:48:30 by ktieu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,19 +54,10 @@ int	main(int ac, char **av)
 	ft_arg_check(ac, av);
 	ft_init(ac, &sorted_array, &stack_a, &stack_b);
 	ft_arg_parse(ac, av, sorted_array, &stack_a);
-	ft_debug_print_stacks(&stack_a, &stack_b);
-
-	printf("Array: ");
-	for (int j = 0; j < stack_a.size; j++)
-	{
-		printf("%d ", sorted_array[j]);
-	}
-	printf("\n");
 	
 	ps_sort(&stack_a, &stack_b);
 	
-	ft_debug_print_stacks(&stack_a, &stack_b);
-	
+	//ft_debug_print_stacks(&stack_a, &stack_b);
 	ft_cleanup(sorted_array, &stack_a, &stack_b);
 	return (0);	
 }
