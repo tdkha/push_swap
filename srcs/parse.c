@@ -6,7 +6,7 @@
 /*   By: ktieu <ktieu@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/29 16:03:49 by ktieu             #+#    #+#             */
-/*   Updated: 2024/07/03 00:53:43 by ktieu            ###   ########.fr       */
+/*   Updated: 2024/07/03 11:48:49 by ktieu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,11 @@ int	*ft_arg_parse_to_arr(int ac, char **av, int *arr)
 // 		stack->max_clusters = 6;
 // }
 
-
+/**
+ * Use the existing <value> property to find the index in the sorted array
+ * Replace the <value> by the index
+ * Search for whihch pair the index belongs to
+ */
 static inline void ft_to_index(
 	int *arr, 
 	t_stack *stack,
@@ -91,18 +95,24 @@ static inline void ft_to_index(
 
 	scaler = 1;
 	found_index = 0;
-	per_pair = stack->size / (stack->pairs);
+	per_pair = (stack->size + 1) / (stack->pairs);
 	while (found_index < stack->size)
 	{
 		if (arr[found_index] == node->value)
 			break ;
 		found_index++;
 	}
+	node->value = found_index;
 	found_index++;
 	range = scaler * (per_pair);
 	while (found_index > range)
 	{
 		scaler++;
+		if (scaler > stack->pairs)
+		{
+			scaler = stack->pairs;
+			break;
+		}
 		range = scaler * (per_pair);
 	}
 	node->in_pair = scaler;
@@ -131,9 +141,14 @@ t_stack	*ft_arg_parse_to_stack(int ac, char **av, int *arr, t_stack *stack)
 	while (i < ac)
 	{
 		node = ps_node_init(ft_atoi(av[i]));
-		ft_to_index(arr, stack, node);
 		ps_stack_push(stack, node);
 		i++;
+	}
+	node = stack->top;
+	while (node)
+	{
+		ft_to_index(arr, stack, node);
+		node = node->prev;
 	}
 	return (stack);
 }

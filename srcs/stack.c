@@ -6,7 +6,7 @@
 /*   By: ktieu <ktieu@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 11:17:59 by ktieu             #+#    #+#             */
-/*   Updated: 2024/07/03 00:53:03 by ktieu            ###   ########.fr       */
+/*   Updated: 2024/07/03 10:49:45 by ktieu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,11 @@
 /**
  * Initialize a struct <t_stack>
  */
-t_stack	ps_stack_init(int size)
+t_stack	ps_stack_init(void)
 {
 	t_stack	res;
 
-	res.size = size;
+	res.size = 0;
 	res.pairs = 3;
 	res.top = NULL;
 	res.bot = NULL;
@@ -43,6 +43,7 @@ void	ps_stack_push(t_stack *stack, t_index_node *to_push)
 		to_push->prev = stack->top;
 		stack->top = to_push;
 	}
+	stack->size++;
 }
 
 /**

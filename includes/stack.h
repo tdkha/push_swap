@@ -6,7 +6,7 @@
 /*   By: ktieu <ktieu@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 11:08:49 by ktieu             #+#    #+#             */
-/*   Updated: 2024/07/03 00:47:50 by ktieu            ###   ########.fr       */
+/*   Updated: 2024/07/03 11:35:05 by ktieu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,12 +55,13 @@ int		ps_push(t_stack *from, t_stack *to);
 int		ps_rotate(t_stack *stack);
 int		ps_rrotate(t_stack *stack);
 int		ps_swap(t_stack *stack);
+int		ps_rotate2(t_stack *a, t_stack *b);
 
 /*+------------------------------------------------------------+*/
 //	STACK
 /*+------------------------------------------------------------+*/
 
-t_stack	ps_stack_init(int size);
+t_stack	ps_stack_init(void);
 
 void	ps_stack_push(t_stack *stack, t_index_node *to_push);
 

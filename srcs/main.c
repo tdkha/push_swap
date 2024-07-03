@@ -6,7 +6,7 @@
 /*   By: ktieu <ktieu@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 11:53:52 by ktieu             #+#    #+#             */
-/*   Updated: 2024/07/03 00:48:41 by ktieu            ###   ########.fr       */
+/*   Updated: 2024/07/03 10:54:50 by ktieu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,8 @@ static inline void	ft_init(int ac, int **array, t_stack *a, t_stack *b)
 	*array = (int *) malloc (sizeof(int) * (ac - 1));
 	if (!(*array))
 		ft_exit("Failed to malloc an array in main function", 1);
-	*a = ps_stack_init(ac - 1);
-	*b = ps_stack_init(ac - 1);
+	*a = ps_stack_init();
+	*b = ps_stack_init();
 }
 
 static inline void	ft_cleanup(int *array, t_stack *a, t_stack *b)
