@@ -6,7 +6,7 @@
 /*   By: ktieu <ktieu@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/27 11:47:16 by ktieu             #+#    #+#             */
-/*   Updated: 2024/07/04 11:51:00 by ktieu            ###   ########.fr       */
+/*   Updated: 2024/07/04 11:52:43 by ktieu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,32 +27,8 @@ static int	ft_pair_exist(t_stack *stack, int pair)
 	return (0);
 }
 
-void	phase1_check_push(
-	t_stack *a,
-	t_stack *b,
-	int cur_pair,
-	int amt_per_pair	
-)
-{
-	// int	need_ra;
-	// int need_rb;
-	// int	mid;
 
-	// need_ra = 0;
-	// need_rb = 0;
-	// mid = (amt_per_pair * (cur_pair - 1) + amt_per_pair * cur_pair) / 2;
-	// if (a->top->in_pair == cur_pair)
-	// {
-	// 	ps_push(a, b);
-	// 	if (b->top->in_pair <= mid)
-	// 		need_rb = 1;
-	// 	if (b->top->in_pair )
-	// }
-	// if (need_rb)
-	// 	ps_rotate(b);
-}
-
-void	phase1_check_rotate(
+void	phase1_push_rotate(
 	t_data *data,
 	t_stack *a, t_stack *b,
 	int cur_pair
@@ -101,7 +77,7 @@ static void	phase1(t_data *data, t_stack *a, t_stack *b)
 	{
 		if (cur_pair == data->max_pairs && a->size == 3)
 			break ;
-		phase1_check_rotate(data, a, b, cur_pair);
+		phase1_push_rotate(data, a, b, cur_pair);
 		cur_pair_exist = ft_pair_exist(a, cur_pair);
 		if (cur_pair_exist == 0 && cur_pair > 0)
 		{
