@@ -6,7 +6,7 @@
 /*   By: ktieu <ktieu@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 16:13:32 by ktieu             #+#    #+#             */
-/*   Updated: 2024/07/03 16:43:50 by ktieu            ###   ########.fr       */
+/*   Updated: 2024/07/04 11:45:43 by ktieu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,8 @@
 */
 int ps_rrotate(t_stack *stack)
 {
-	if (stack->top)
-		printf("rrotate: %d\n", stack->top->value);
+	// if (stack->top)
+	// 	printf("rrotate: %d\n", stack->top->value);
 	t_index_node	*head_node;
 	t_index_node	*next_node;
 

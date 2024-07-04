@@ -6,7 +6,7 @@
 /*   By: ktieu <ktieu@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/27 11:47:16 by ktieu             #+#    #+#             */
-/*   Updated: 2024/07/04 10:50:55 by ktieu            ###   ########.fr       */
+/*   Updated: 2024/07/04 11:51:00 by ktieu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,11 +67,11 @@ void	phase1_check_rotate(
 	mid = ((cur_pair - 1) * data->amt_per_pair + cur_pair * data->amt_per_pair - 1) / 2;
 	if (a->top->in_pair == cur_pair)
 	{
-		ps_push(a, b);
+		ps_stack_action("pb",a ,b);
 		if (b->size > 1 && b->top->value < mid)
 		{
-			printf("amt_per_pair: %d\n", data->amt_per_pair);
-			printf("mid: %d\n", mid);
+			// printf("amt_per_pair: %d\n", data->amt_per_pair);
+			// printf("mid: %d\n", mid);
 			need_rb = 1;
 		}
 	}
@@ -80,18 +80,11 @@ void	phase1_check_rotate(
 	if (b->size > 1 && b->top->in_pair == cur_pair - 1)
 		need_rb = 1;
 	if (need_ra && need_rb)
-		ps_rotate2(a, b);
+		ps_stack_action("rr", a, b);
 	else if (need_ra)
-	{
-		printf("Rotate A: ");
-		ps_rotate(a);
-	}
+		ps_stack_action("ra", a, b);
 	else if (need_rb)
-	{
-		printf("Rotate B: ");
-		ps_rotate(b);
-
-	}
+		ps_stack_action("rb", a, b);
 }
 
 static void	phase1(t_data *data, t_stack *a, t_stack *b)
@@ -106,7 +99,6 @@ static void	phase1(t_data *data, t_stack *a, t_stack *b)
 	cur_pair_exist = ft_pair_exist(a, cur_pair);
 	while (cur_pair_exist > 0 && a->size > 3)
 	{
-		// ft_debug_print_stacks(a,b);
 		if (cur_pair == data->max_pairs && a->size == 3)
 			break ;
 		phase1_check_rotate(data, a, b, cur_pair);
@@ -120,15 +112,16 @@ static void	phase1(t_data *data, t_stack *a, t_stack *b)
 	}
 }
 
-static void	phase2(t_stack *a, t_stack *b)
+static void	phase2(t_data *data, t_stack *a, t_stack *b)
 {
 	printf("--------------------------------\n");
 	printf("Phase 2\n");
 	printf("--------------------------------\n");
-	// int				cur_pair;
-	// int				cur_pair_exist;
-	// cur_pair = 1;
-	// cur_pair_exist = ft_pair_exist(a, cur_pair);
+	
+	int				cur_pair;
+	int				cur_pair_exist;
+	cur_pair = data->max_pairs;
+	cur_pair_exist = ft_pair_exist(a, cur_pair);
 }
 
 
@@ -138,9 +131,8 @@ void	ps_sort(t_data *data, t_stack *a, t_stack *b)
 	{
 		phase1(data, a, b);
 		ps_sort3(a);
-		phase2(a, b);
+		phase2(data, a, b);
 	}
 	else
 		ps_sort3(a);
-	
 }

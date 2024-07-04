@@ -19,6 +19,7 @@ SRC_FILES		=	./srcs/main.c \
 					./srcs/stack_action_rotate.c \
 					./srcs/stack_action_rrotate.c \
 					./srcs/stack_action_push.c \
+					./srcs/stack_actions.c \
 					./srcs/algo_sort3.c \
 					./srcs/algo_utils.c \
  					./srcs/algo.c \
