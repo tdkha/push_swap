@@ -6,7 +6,7 @@
 /*   By: ktieu <ktieu@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/28 13:29:19 by ktieu             #+#    #+#             */
-/*   Updated: 2024/07/02 22:15:57 by ktieu            ###   ########.fr       */
+/*   Updated: 2024/07/04 14:47:28 by ktieu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,4 +58,18 @@ void	ft_quick_sort(int *arr, int left, int right)
 		ft_quick_sort(arr, left, pivot_index - 1);
 		ft_quick_sort(arr, pivot_index + 1, right);
 	}
+}
+
+int	ft_pair_exist(t_stack *stack, int pair)
+{
+	t_index_node	*node;
+
+	node = stack->top;
+	while (node)
+	{
+		if (node->in_pair == pair)
+			return (1);
+		node = node->prev;
+	}
+	return (0);
 }

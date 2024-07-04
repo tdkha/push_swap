@@ -6,7 +6,7 @@
 /*   By: ktieu <ktieu@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 11:53:52 by ktieu             #+#    #+#             */
-/*   Updated: 2024/07/04 10:57:03 by ktieu            ###   ########.fr       */
+/*   Updated: 2024/07/04 14:40:51 by ktieu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,14 +19,15 @@
  *	<1> First parse the <arg> to an array.
  *	<2> Then use that array to parse a <node> for a <stack>
  */
-static void	*ft_arg_parse(
+static int	ft_arg_parse(
 	t_data *general_data,
 	int *arr, t_stack *stack)
 {
 	if (ft_arg_parse_to_arr(general_data, arr) == NULL)
-		return (NULL); 
+		return (0); 
 	if (ft_arg_parse_to_stack(general_data, arr, stack) == NULL)
-		return (NULL);
+		return (0);
+	return (1);
 }
 
 static inline void	ft_init(
@@ -65,7 +66,7 @@ int	main(int ac, char **av)
 	general_data.av = av;
 	general_data.max_pairs = 3;
 	ft_init(&general_data, &sorted_array, &stack_a, &stack_b);
-	if (ft_arg_parse(&general_data, sorted_array, &stack_a) != NULL)
+	if (ft_arg_parse(&general_data, sorted_array, &stack_a))
 	{
 		ft_debug_print_stacks(&stack_a, &stack_b);
 		ps_sort(&general_data, &stack_a, &stack_b);

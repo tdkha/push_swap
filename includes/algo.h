@@ -6,7 +6,7 @@
 /*   By: ktieu <ktieu@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/28 13:30:26 by ktieu             #+#    #+#             */
-/*   Updated: 2024/07/04 10:51:14 by ktieu            ###   ########.fr       */
+/*   Updated: 2024/07/04 15:11:51 by ktieu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ void	ft_quick_sort(int *arr, int left, int right);
 
 int		ps_stack_is_sorted(t_stack  *stack);
 
+int		ft_pair_exist(t_stack *stack, int pair);
 
 /*+------------------------------------------------------------+*/
 //	ALGO SORT LARGE UTILS
@@ -44,6 +45,10 @@ void	ps_sort3(t_stack *a);
 /*+------------------------------------------------------------+*/
 //	ALGO SORT
 /*+------------------------------------------------------------+*/
+
+void	phase1(t_data *data, t_stack *a, t_stack *b);
+
+void	phase2(t_data *data, t_stack *a, t_stack *b);
 
 void	ps_sort(t_data *data, t_stack *a, t_stack *b);
 

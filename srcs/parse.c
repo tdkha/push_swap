@@ -6,7 +6,7 @@
 /*   By: ktieu <ktieu@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/29 16:03:49 by ktieu             #+#    #+#             */
-/*   Updated: 2024/07/04 10:55:05 by ktieu            ###   ########.fr       */
+/*   Updated: 2024/07/04 14:41:49 by ktieu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,7 +107,6 @@ t_stack	*ft_arg_parse_to_stack(t_data *general_data, int *arr, t_stack *stack)
 	}
 	node = stack->top;
 	general_data->amt_per_pair = (stack->size + 1) / (general_data->max_pairs);
-	printf("DEBUG: %d\n", general_data->amt_per_pair);
 	while (node)
 	{
 		ft_to_index(general_data, arr, stack, node);
