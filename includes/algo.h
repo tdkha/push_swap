@@ -6,7 +6,7 @@
 /*   By: ktieu <ktieu@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/28 13:30:26 by ktieu             #+#    #+#             */
-/*   Updated: 2024/07/03 00:43:37 by ktieu            ###   ########.fr       */
+/*   Updated: 2024/07/04 10:51:14 by ktieu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,6 @@ void	ps_sort3(t_stack *a);
 //	ALGO SORT
 /*+------------------------------------------------------------+*/
 
-void	ps_sort(t_stack *a, t_stack *b);
+void	ps_sort(t_data *data, t_stack *a, t_stack *b);
 
 #endif

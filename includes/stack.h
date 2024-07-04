@@ -6,7 +6,7 @@
 /*   By: ktieu <ktieu@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 11:08:49 by ktieu             #+#    #+#             */
-/*   Updated: 2024/07/03 11:35:05 by ktieu            ###   ########.fr       */
+/*   Updated: 2024/07/04 10:53:02 by ktieu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,14 @@
 //	STRUCT
 /*+------------------------------------------------------------+*/
 
+typedef	struct s_data
+{
+	int 	ac;
+	char	**av;
+	int 	amt_per_pair;
+	int 	max_pairs;
+}	t_data;
+
 typedef struct	s_node
 {
 	int 			value;
@@ -26,11 +34,12 @@ typedef struct	s_node
 	struct	s_node *prev;
 }	t_index_node;
 
-
+/**
+ * @param amt_per_pair : {int} the avergae amount of elements inside a pair (the last one is a bit different)
+ */
 typedef struct s_stack
 {
 	int				size;
-	int				pairs;
 	t_index_node	*top;
 	t_index_node	*bot;
 }	t_stack;

@@ -6,7 +6,7 @@
 /*   By: ktieu <ktieu@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 16:12:55 by ktieu             #+#    #+#             */
-/*   Updated: 2024/07/03 11:33:57 by ktieu            ###   ########.fr       */
+/*   Updated: 2024/07/03 16:44:29 by ktieu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,10 @@
  * shift up, the top becomes the head
  * Trên xuống dưới
 */
-inline int ps_rotate(t_stack *stack)
+int ps_rotate(t_stack *stack)
 {
-	printf("rotate: %d\n", stack->top->value);
+	if (stack->top)
+		printf("rotate: %d\n", stack->top->value);
 	t_index_node *tail_node;
 	t_index_node *prev_node;
 
@@ -37,7 +38,7 @@ inline int ps_rotate(t_stack *stack)
 	return (1);
 }
 
-static inline int ps_rotate_no_print(t_stack *stack)
+static int ps_rotate_no_print(t_stack *stack)
 {
 	t_index_node *tail_node;
 	t_index_node *prev_node;
@@ -57,7 +58,7 @@ static inline int ps_rotate_no_print(t_stack *stack)
 	return (1);
 }
 
-inline int	ps_rotate2(t_stack *a, t_stack *b)
+int	ps_rotate2(t_stack *a, t_stack *b)
 {
 	printf("rr\n");
 	int	res;

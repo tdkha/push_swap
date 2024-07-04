@@ -6,7 +6,7 @@
 /*   By: ktieu <ktieu@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 11:17:59 by ktieu             #+#    #+#             */
-/*   Updated: 2024/07/03 10:49:45 by ktieu            ###   ########.fr       */
+/*   Updated: 2024/07/04 10:53:11 by ktieu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,6 @@ t_stack	ps_stack_init(void)
 	t_stack	res;
 
 	res.size = 0;
-	res.pairs = 3;
 	res.top = NULL;
 	res.bot = NULL;
 	return (res);
