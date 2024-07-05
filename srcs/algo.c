@@ -6,7 +6,7 @@
 /*   By: ktieu <ktieu@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/27 11:47:16 by ktieu             #+#    #+#             */
-/*   Updated: 2024/07/04 15:31:51 by ktieu            ###   ########.fr       */
+/*   Updated: 2024/07/05 14:07:00 by ktieu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	ps_sort(t_data *data, t_stack *a, t_stack *b)
 	{
 		phase1(data, a, b);
 		ps_sort3(a);
-		// phase2(data, a, b);
+		phase2(data, a, b);
 	}
 	else
 		ps_sort3(a);
