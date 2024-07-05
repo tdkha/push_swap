@@ -6,7 +6,7 @@
 /*   By: ktieu <ktieu@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/04 15:11:07 by ktieu             #+#    #+#             */
-/*   Updated: 2024/07/05 15:00:09 by ktieu            ###   ########.fr       */
+/*   Updated: 2024/07/05 16:25:31 by ktieu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,27 @@ static void	adjust_top(
 	t_index_node *pivot_node
 )
 {
-	
+	int				tmp_iter;
+
+	tmp_iter = iteration;
+	while (tmp_iter-- > 0)
+	{
+		ps_stack_action("sa", a, b);
+		ps_stack_action("ra", a, b);
+	}
+	tmp_iter = iteration;
+	while (tmp_iter-- > 0)
+	{
+		if (b->size >= 1 
+			&& pivot_node->in_pair - 1 == b->bot->in_pair
+			&& b->top->in_pair != pivot_node->in_pair
+		)
+		{
+			ps_stack_action("rrr", a, b);
+		}
+		else
+			ps_stack_action("rra", a, b);
+	}
 }
 
 static void	adjust_bot(
@@ -89,7 +109,28 @@ static void	adjust_bot(
 	t_index_node *pivot_node
 )
 {
-	
+	int				tmp_iter;
+	t_index_node	*node;
+
+	node = a->top;
+	tmp_iter = iteration;
+	if (a->bot && pivot_node->value > a->bot->value)
+	{
+		ps_stack_action("ra", a, b);
+		return ;
+	}
+	while (tmp_iter-- > 0)
+	{
+		if (b->bot && pivot_node->in_pair - 1 == b->bot->in_pair)
+			ps_stack_action("rrr", a, b);
+		else
+			ps_stack_action("rra", a, b);
+	}
+	tmp_iter = iteration + 1;
+	while (tmp_iter-- > 0)
+	{
+		ps_stack_action("ra", a, b);
+	}
 }
 
 static void	phase2_adjust(
@@ -106,7 +147,7 @@ static void	phase2_adjust(
 	insert_pos = find_insert_pos_from_top(a, pivot_node, cur_pair);
 	iteraton = 0;
 
-	printf("Insert position: %d\n", insert_pos);
+	// printf("Insert position: %d\n", insert_pos);
 	if (insert_pos == 0)
 		return ;
 	if (insert_pos == a->size - 1)
@@ -117,22 +158,21 @@ static void	phase2_adjust(
 	if (insert_pos <= (a->size) / 2 + 1)
 	{
 		iteraton = insert_pos;
-		// adjust_bot(a, b, iteraton, pivot_node);
+		adjust_top(a, b, iteraton, pivot_node);
 	}
 	else
 	{
 		iteraton = a->size - insert_pos;
-		// adjust_top(a, b, iteraton, pivot_node);
+		adjust_bot(a, b, iteraton, pivot_node);
 	}
-	printf("Insert position: %d\n", insert_pos);
-	printf("Iteration: %d\n", iteraton);
+	// printf("Iteration: %d\n", iteraton);
 }
 
 void	phase2(t_data *data, t_stack *a, t_stack *b)
 {
-	printf("--------------------------------\n");
-	printf("Phase 2\n");
-	printf("--------------------------------\n");
+	// printf("--------------------------------\n");
+	// printf("Phase 2\n");
+	// printf("--------------------------------\n");
 	
 	int				cur_pair;
 	int				cur_pair_exist;
@@ -140,8 +180,7 @@ void	phase2(t_data *data, t_stack *a, t_stack *b)
 	cur_pair_exist = ft_pair_exist(b, cur_pair);
 	while (cur_pair_exist > 0)
 	{
-		// if (cur_pair == 1)
-		if (cur_pair == 2)	
+		if (b->size == 0)
 			break ;
 		phase2_push(data, a, b, cur_pair);
 		phase2_adjust(data, a, b, cur_pair);
@@ -151,6 +190,6 @@ void	phase2(t_data *data, t_stack *a, t_stack *b)
 			cur_pair--;
 			cur_pair_exist = ft_pair_exist(b, cur_pair);
 		}
-		ft_debug_print_stacks(a, b);
+		// ft_debug_print_stacks(a, b);
 	}
 }
