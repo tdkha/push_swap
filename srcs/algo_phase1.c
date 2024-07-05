@@ -6,7 +6,7 @@
 /*   By: ktieu <ktieu@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/04 15:32:19 by ktieu             #+#    #+#             */
-/*   Updated: 2024/07/04 15:32:20 by ktieu            ###   ########.fr       */
+/*   Updated: 2024/07/05 12:46:47 by ktieu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,20 +28,18 @@ static void	phase1_push_rotate(
 	need_ra = 0;
 	need_rb = 0;
 	mid = ((cur_pair - 1) * data->amt_per_pair + cur_pair * data->amt_per_pair - 1) / 2;
+			printf("Mid: %d\n", mid);
+
 	if (a->top->in_pair == cur_pair)
 	{
 		ps_stack_action("pb",a ,b);
+		if (ft_pair_exist(a, cur_pair) == 0 && a->top->in_pair != cur_pair - 1)
+			need_ra = 1;
 		if (b->size > 1 && b->top->value < mid)
-		{
-			// printf("amt_per_pair: %d\n", data->amt_per_pair);
-			// printf("mid: %d\n", mid);
 			need_rb = 1;
-		}
 	}
-	if (a->top->in_pair != cur_pair)
+	else
 		need_ra = 1;
-	if (b->size > 1 && b->top->in_pair == cur_pair - 1)
-		need_rb = 1;
 	if (need_ra && need_rb)
 		ps_stack_action("rr", a, b);
 	else if (need_ra)

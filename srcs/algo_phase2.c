@@ -6,7 +6,7 @@
 /*   By: ktieu <ktieu@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/04 15:11:07 by ktieu             #+#    #+#             */
-/*   Updated: 2024/07/04 15:34:14 by ktieu            ###   ########.fr       */
+/*   Updated: 2024/07/05 12:23:54 by ktieu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,12 +82,17 @@ static void	phase2_push(
 	t_stack *b,
 	int	cur_pair)
 {
+	
 	int	need_rra;
 	int need_rrb;
 
 	need_rra = 0;
 	need_rrb = 0;
-	if (b->top->in_pair != cur_pair && b->top->in_pair == cur_pair)
+	//--------------------------------------------------
+
+	// REVERSE ROTATE
+	//--------------------------------------------------
+	if (b->top->in_pair != cur_pair && b->bot->in_pair == cur_pair)
 		need_rrb = 1;
 	if (b->top->value > a->top->value)
 		need_rra = 1;
@@ -98,17 +103,21 @@ static void	phase2_push(
 	else if (need_rrb)
 		ps_stack_action("rrb", a, b);
 		
+	//--------------------------------------------------
+	// PUSH 
+	//--------------------------------------------------
+
 	if (b->top->in_pair == cur_pair)
 	{
 		ps_stack_action("pa", a, b);
 	}
-	else
-	{
-		if (b->bot->in_pair == cur_pair)
-		{
-			ps_stack_action("pa",a,b);
-		}
-	}
+	// else
+	// {
+	// 	if (b->bot->in_pair == cur_pair)
+	// 	{
+	// 		ps_stack_action("pa",a,b);
+	// 	}
+	// }
 }
 
 void	phase2(t_data *data, t_stack *a, t_stack *b)
