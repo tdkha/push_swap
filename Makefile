@@ -23,7 +23,8 @@ SRC_FILES		=	./srcs/main.c \
 					./srcs/algo_sort3.c \
 					./srcs/algo_utils.c \
 					./srcs/algo_phase1.c \
-					./srcs/algo_phase2.c \
+					./srcs/algo_phase2_utils.c \
+					./srcs/algo_phase2_beta.c \
  					./srcs/algo.c \
 					./srcs/debug.c 
 

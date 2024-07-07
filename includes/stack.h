@@ -6,7 +6,7 @@
 /*   By: ktieu <ktieu@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 11:08:49 by ktieu             #+#    #+#             */
-/*   Updated: 2024/07/04 11:45:23 by ktieu            ###   ########.fr       */
+/*   Updated: 2024/07/07 12:20:38 by ktieu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,12 +22,14 @@ typedef	struct s_data
 {
 	int 	ac;
 	char	**av;
+	int		total;
 	int 	amt_per_pair;
 	int 	max_pairs;
 }	t_data;
 
 typedef struct	s_node
 {
+	int				origin;
 	int 			value;
 	int				in_pair;
 	struct	s_node *next;

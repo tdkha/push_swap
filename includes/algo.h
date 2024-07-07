@@ -6,7 +6,7 @@
 /*   By: ktieu <ktieu@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/28 13:30:26 by ktieu             #+#    #+#             */
-/*   Updated: 2024/07/04 15:11:51 by ktieu            ###   ########.fr       */
+/*   Updated: 2024/07/07 16:33:10 by ktieu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,15 +32,29 @@ int		ps_stack_is_sorted(t_stack  *stack);
 int		ft_pair_exist(t_stack *stack, int pair);
 
 /*+------------------------------------------------------------+*/
-//	ALGO SORT LARGE UTILS
+//	ALGO UTILS
 /*+------------------------------------------------------------+*/
 
+int 	find_insert_pos_from_top(
+			t_stack *a, 
+			t_index_node *top_node,
+			int cur_pair);
+void	adjust_top(
+			t_stack *a,
+			t_stack *b,
+			int iteration,
+			t_index_node *pivot_node);
 
+void	adjust_bot(
+			t_stack *a,
+			t_stack *b,
+			int iteration,
+			t_index_node *pivot_node);		
 /*+------------------------------------------------------------+*/
 //	ALGO SORT SMALL
 /*+------------------------------------------------------------+*/
 
-void	ps_sort3(t_stack *a);
+void	ps_sort3(t_stack *a, t_stack *b);
 
 /*+------------------------------------------------------------+*/
 //	ALGO SORT

@@ -6,7 +6,7 @@
 /*   By: ktieu <ktieu@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 11:53:52 by ktieu             #+#    #+#             */
-/*   Updated: 2024/07/05 16:26:07 by ktieu            ###   ########.fr       */
+/*   Updated: 2024/07/07 16:41:11 by ktieu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,8 @@ int	main(int ac, char **av)
 	ft_arg_check(ac, av);
 	general_data.ac = ac;
 	general_data.av = av;
-	general_data.max_pairs = 3;
+	general_data.max_pairs = 8;
+	general_data.total = ac - 1;
 	ft_init(&general_data, &sorted_array, &stack_a, &stack_b);
 	if (ft_arg_parse(&general_data, sorted_array, &stack_a))
 	{

@@ -6,7 +6,7 @@
 /*   By: ktieu <ktieu@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/29 16:03:49 by ktieu             #+#    #+#             */
-/*   Updated: 2024/07/04 14:41:49 by ktieu            ###   ########.fr       */
+/*   Updated: 2024/07/07 12:21:06 by ktieu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ int	*ft_arg_parse_to_arr(t_data *general_data, int *arr)
 
 void	ft_parse_general_data(t_data *data, int size)
 {
-	data->max_pairs = 3;
+	data->max_pairs = 6;
 	data->amt_per_pair = (size + 1) / data->max_pairs;
 }
 
@@ -90,12 +90,13 @@ t_stack	*ft_arg_parse_to_stack(t_data *general_data, int *arr, t_stack *stack)
 	t_index_node	*node;
 	
 	node = NULL;
-	i = 1;
+	i = general_data->ac - 1;
 	if (general_data->ac < 2)
 		return (NULL);
-	while (i <general_data->ac)
+	while (i > 0)
 	{
 		node = ps_node_init(ft_atoi(general_data->av[i]));
+		node->origin = ft_atoi(general_data->av[i]);
 		if (!node)
 		{
 			ps_stack_free(stack);
@@ -103,7 +104,7 @@ t_stack	*ft_arg_parse_to_stack(t_data *general_data, int *arr, t_stack *stack)
 			return (NULL);
 		}
 		ps_stack_push(stack, node);
-		i++;
+		i--;
 	}
 	node = stack->top;
 	general_data->amt_per_pair = (stack->size + 1) / (general_data->max_pairs);

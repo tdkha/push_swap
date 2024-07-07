@@ -33,7 +33,8 @@ SRC_FILES           =   ./ft_atoi.c ./ft_bzero.c ./ft_calloc.c \
                         ./ft_strtrim.c ./ft_substr.c \
                         ./ft_strcmp.c \
                         ./ft_tolower.c ./ft_toupper.c \
-                        ./ft_free.c 
+                        ./ft_free.c \
+						./ft_abs.c
 
 
 SRC_BONUS_FILES     =   ./ft_lstnew_bonus.c ./ft_lstadd_front_bonus.c ./ft_lstsize_bonus.c ./ft_lstlast_bonus.c ./ft_lstadd_back_bonus.c \

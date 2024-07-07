@@ -6,7 +6,7 @@
 /*   By: ktieu <ktieu@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 11:56:14 by ktieu             #+#    #+#             */
-/*   Updated: 2024/07/03 00:17:06 by ktieu            ###   ########.fr       */
+/*   Updated: 2024/07/07 16:24:40 by ktieu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,12 +67,12 @@ void	ft_debug_print_stacks(t_stack *stack_a, t_stack *stack_b)
 	while (cur_node_a || cur_node_b)
 	{
 		if (cur_node_a)
-			printf(" |     %d[%d]     |", cur_node_a->value, cur_node_a->in_pair);
+			printf(" |     %d[%d]     |", cur_node_a->origin, cur_node_a->in_pair);
 		else
 			printf(" |              |");
 		printf("\t\t");
 		if (cur_node_b)
-			printf(" |     %d[%d]     |\n", cur_node_b->value, cur_node_b->in_pair);
+			printf(" |     %d[%d]     |\n", cur_node_b->origin, cur_node_b->in_pair);
 		else
 			printf(" |              |\n");
 		if (cur_node_a)
