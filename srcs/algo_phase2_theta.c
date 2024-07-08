@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   algo_phase2_beta.c                                 :+:      :+:    :+:   */
+/*   algo_phase2_theta.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ktieu <ktieu@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/06 21:28:41 by ktieu             #+#    #+#             */
-/*   Updated: 2024/07/07 22:34:17 by ktieu            ###   ########.fr       */
+/*   Updated: 2024/07/07 20:36:44 by ktieu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,29 +106,21 @@ int	max_top_to_top(
 	int				max_bot;
 	int				iter[2] = {0};
 	int				found[2] = {0};
+	int				mid;
 
 	if (!a || !b || b->size <= 1)
 		return (0);
+	mid = ((cur_pair - 1) * data->amt_per_pair + cur_pair * data->amt_per_pair - 1) / 2;
 	if (b->size >= 2)
 	{
-		if (b->top->value == a->top->value - 1)
-			return (1);
-		else
-		{
-			max_top = find_max_top_same_pair(b, cur_pair, &iter[0], &found[0]);
-			max_bot = find_max_bot_same_pair(b, cur_pair, &iter[1], &found[1]);
-			printf("Max top: %d\n", max_top);
-		printf("Max bot: %d\n", max_bot);
-		printf("Iter top: %d\n", iter[0]);
-		printf("Iter bot: %d\n", iter[1]);
-		printf("Found top: %d\n", found[0]);
-			if (max_top == max_bot && iter[0] > iter[1])
-					return (0);
-			if (max_top < max_bot)
+		max_top = find_max_top_same_pair(b, cur_pair, &iter[0], &found[0]);
+		max_bot = find_max_bot_same_pair(b, cur_pair, &iter[1], &found[1]);
+		if (max_top == max_bot && iter[0] > iter[1])
 				return (0);
-			while (iter[0]-- > 0)
-				ps_stack_action("rb", a, b);
-		}
+		if (max_top < max_bot)
+			return (0);
+		while (iter[0]-- > 0)
+			ps_stack_action("rb", a, b);
 	}
 	return (found[0]);
 }
@@ -166,40 +158,12 @@ int	max_bot_to_top(
 	return (found);
 }
 
-static int node_is_min(
-	t_stack *a,
-	t_stack *b,
-	int	cur_pair)
-{
-	t_index_node	*node;
-	int				min;
-
-	if (!a || !b || b->size <= 2)
-		return (0);
-	if (b->top->value == a->top->value - 1)
-		return (0);
-	node = b->top;
-	min = b->top->value;
-	while (node && node->in_pair == cur_pair)
-	{
-		if(min > node->value)
-			min = node->value;
-		node = node->prev;
-	}
-	if (min == b->top->value)
-	{
-		return (1);
-	}
-	return (0);
-}
-
 void	phase2_push_max(
 	t_data *data,
 	t_stack *a,
 	t_stack *b,
 	int cur_pair)
 {
-	int	top_min_found;
 	int	top_found;
 	int	bot_found;
 
@@ -208,83 +172,18 @@ void	phase2_push_max(
 	if (b->size > 0)
 	{
 		if (b->top->in_pair == cur_pair)
-		{
-			top_min_found = node_is_min(a, b, cur_pair);
-			if (top_min_found == 0)
-				top_found = max_top_to_top(data, a, b, cur_pair);
-		}
-		if (top_min_found == 0 && top_found == 0 && b->bot->in_pair == cur_pair)
+			top_found = max_top_to_top(data, a, b, cur_pair);
+		if (top_found == 0 && b->bot->in_pair == cur_pair)
 			bot_found = max_bot_to_top(data, a, b, cur_pair);
-		printf("Found: %d %d %d\n",top_min_found, top_found, bot_found);
+		// printf("Found: %d %d\n", top_found, bot_found);
 		if (top_found || bot_found || b->size == 1)
 			ps_stack_action("pa", a, b);
-		if (top_min_found)
-		{
-			ps_stack_action("pa", a, b);
-			ps_stack_action("ra", a, b);
-		}
 	}
 }
-
-void	phase2_check_rotate(
-	t_data *data,
-	t_stack *a,
-	t_stack *b,
-	int cur_pair)
-{
-	int				need_rra;
-	int 			need_rrb;
-	int				need_rrr;
-	t_index_node	*node;
-
-	need_rra = 0;
-	need_rrb = 0;
-	need_rrr = 0;
-	node = a->bot;
-	while (node && a->bot->value == a->top->value - 1)
-	{
-		if (node->value < node->next->value)
-		{
-			need_rra++;
-			break ;
-		}
-		need_rra++;
-		node = node->next;
-	}
-	if (b->size >= 2)
-	{
-		node = b->bot;
-		while (b->top->in_pair != cur_pair
-			&& node && node->in_pair == cur_pair)
-		{
-			need_rrb++;
-			node = node->next;
-		}
-	}
-	if (need_rra < need_rrb)
-	{
-		need_rrr = need_rra;
-		need_rrb -= need_rra;
-		need_rra = 0;
-	}
-	else
-	{
-		need_rrr = need_rrb;
-		need_rra -= need_rrb;
-		need_rrb = 0;
-	}
-	while (need_rrr-- > 0)
-		ps_stack_action("rrr", a, b);
-	while (need_rra-- > 0)
-		ps_stack_action("rra", a, b);
-	while (need_rrb-- > 0)
-		ps_stack_action("rrb", a, b);
-}
-
 
 void	phase2(t_data *data, t_stack *a, t_stack *b)
 {
-	t_actions		actions = {0};
+
 	int				cur_pair;
 	int				cur_pair_exist;
 	
@@ -301,8 +200,6 @@ void	phase2(t_data *data, t_stack *a, t_stack *b)
 		if (b->size == 0)
 			break ;
 		phase2_push_max(data, a, b, cur_pair);
-		// if (a->size >= 2 && b->size >= 2)
-		phase2_check_rotate(data, a, b, cur_pair);
 		cur_pair_exist = ft_pair_exist(b, cur_pair);
 		if (cur_pair_exist == 0 && cur_pair > 0)
 		{

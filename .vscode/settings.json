@@ -12,6 +12,7 @@
 		"libft.h": "c",
 		"algo.h": "c",
 		"chrono": "c",
-		"semaphore": "c"
+		"semaphore": "c",
+		"string": "c"
 	}
 }

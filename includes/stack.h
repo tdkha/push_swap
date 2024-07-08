@@ -6,7 +6,7 @@
 /*   By: ktieu <ktieu@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 11:08:49 by ktieu             #+#    #+#             */
-/*   Updated: 2024/07/07 12:20:38 by ktieu            ###   ########.fr       */
+/*   Updated: 2024/07/07 22:33:16 by ktieu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,16 @@ typedef struct s_stack
 	t_index_node	*top;
 	t_index_node	*bot;
 }	t_stack;
+
+typedef struct s_actions
+{
+	int	need_ra;
+	int	need_rb;
+	int	need_rr;
+	int	need_rra;
+	int	need_rrb;
+	int	need_rrr;
+}	t_actions;
 
 /*+------------------------------------------------------------+*/
 //	INDEX

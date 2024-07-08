@@ -6,12 +6,11 @@
 /*   By: ktieu <ktieu@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/06 16:27:40 by ktieu             #+#    #+#             */
-/*   Updated: 2024/07/06 17:59:44 by ktieu            ###   ########.fr       */
+/*   Updated: 2024/07/07 19:53:01 by ktieu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/algo.h"
-#include "../includes/push_swap.h"
 
 int find_insert_pos_from_top(
     t_stack *a, 
