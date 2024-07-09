@@ -6,7 +6,7 @@
 /*   By: ktieu <ktieu@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/29 16:03:49 by ktieu             #+#    #+#             */
-/*   Updated: 2024/07/07 12:21:06 by ktieu            ###   ########.fr       */
+/*   Updated: 2024/07/09 15:59:03 by ktieu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,8 @@ int	*ft_arg_parse_to_arr(t_data *general_data, int *arr)
 
 void	ft_parse_general_data(t_data *data, int size)
 {
-	data->max_pairs = 6;
-	data->amt_per_pair = (size + 1) / data->max_pairs;
+	data->max_chunks = 6;
+	data->amt_per_chunk = (size + 1) / data->max_chunks;
 }
 
 /**
@@ -53,24 +53,25 @@ static void ft_to_index(
 	found_index = 0;
 	while (found_index < stack->size)
 	{
-		if (arr[found_index] == node->value)
+		if (arr[found_index] == node->index)
 			break ;
 		found_index++;
 	}
-	node->value = found_index;
 	found_index++;
-	range = scaler * (data->amt_per_pair);
-	while (found_index > range)
-	{
-		scaler++;
-		if (scaler > data->max_pairs)
-		{
-			scaler = data->max_pairs;
-			break;
-		}
-		range = scaler * (data->amt_per_pair);
-	}
-	node->in_pair = scaler;
+	node->index = found_index;
+// 	found_index++;
+// 	range = scaler * (data->amt_per_chunk);
+// 	while (found_index > range)
+// 	{
+// 		scaler++;
+// 		if (scaler > data->max_chunks)
+// 		{
+// 			scaler = data->max_chunks;
+// 			break;
+// 		}
+// 		range = scaler * (data->amt_per_chunk);
+// 	}
+// 	node->in_pair = scaler;
 }
 
 /**
@@ -96,7 +97,6 @@ t_stack	*ft_arg_parse_to_stack(t_data *general_data, int *arr, t_stack *stack)
 	while (i > 0)
 	{
 		node = ps_node_init(ft_atoi(general_data->av[i]));
-		node->origin = ft_atoi(general_data->av[i]);
 		if (!node)
 		{
 			ps_stack_free(stack);
@@ -107,7 +107,7 @@ t_stack	*ft_arg_parse_to_stack(t_data *general_data, int *arr, t_stack *stack)
 		i--;
 	}
 	node = stack->top;
-	general_data->amt_per_pair = (stack->size + 1) / (general_data->max_pairs);
+	general_data->amt_per_chunk = (stack->size + 1) / (general_data->max_chunks);
 	while (node)
 	{
 		ft_to_index(general_data, arr, stack, node);

@@ -6,7 +6,7 @@
 /*   By: ktieu <ktieu@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/28 13:30:26 by ktieu             #+#    #+#             */
-/*   Updated: 2024/07/07 16:33:10 by ktieu            ###   ########.fr       */
+/*   Updated: 2024/07/09 19:04:48 by ktieu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,41 +29,44 @@ void	ft_quick_sort(int *arr, int left, int right);
 
 int		ps_stack_is_sorted(t_stack  *stack);
 
-int		ft_pair_exist(t_stack *stack, int pair);
 
 /*+------------------------------------------------------------+*/
-//	ALGO UTILS
+//	A2B UTILS
 /*+------------------------------------------------------------+*/
 
-int 	find_insert_pos_from_top(
-			t_stack *a, 
-			t_index_node *top_node,
-			int cur_pair);
-void	adjust_top(
-			t_stack *a,
-			t_stack *b,
-			int iteration,
-			t_index_node *pivot_node);
+int		chunk_check_index_exist(
+			t_data * data,
+			t_chunk *chunk,
+			t_stack *a);
 
-void	adjust_bot(
-			t_stack *a,
-			t_stack *b,
-			int iteration,
-			t_index_node *pivot_node);		
+void	update_chunk(
+			t_data * data,
+			t_chunk *chunk);
+
+int		index_in_range(
+			int index,
+			int min,
+			int max);
+
+t_chunk	a2b_chunk_init(t_data *data, t_stack *a);
+
 /*+------------------------------------------------------------+*/
-//	ALGO SORT SMALL
+//	B2A UTILS
 /*+------------------------------------------------------------+*/
 
-void	ps_sort3(t_stack *a, t_stack *b);
+int		distance_from_top(
+			int to_find,
+			t_stack *b);
+
+int		distance_from_bot(
+			int to_find,
+			t_stack *b);
 
 /*+------------------------------------------------------------+*/
 //	ALGO SORT
 /*+------------------------------------------------------------+*/
 
-void	phase1(t_data *data, t_stack *a, t_stack *b);
-
-void	phase2(t_data *data, t_stack *a, t_stack *b);
-
+void	ps_sort3(t_stack *a, t_stack *b);
 void	ps_sort(t_data *data, t_stack *a, t_stack *b);
 
 #endif

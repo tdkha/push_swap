@@ -6,7 +6,7 @@
 /*   By: ktieu <ktieu@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/27 09:47:21 by ktieu             #+#    #+#             */
-/*   Updated: 2024/07/04 11:45:57 by ktieu            ###   ########.fr       */
+/*   Updated: 2024/07/09 11:40:20 by ktieu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,6 @@
 
 int	ps_push(t_stack *from, t_stack *to)
 {
-	// if(from->top)
-	// 	printf("push %d\n", from->top->value);
 	t_index_node	*to_add_node;
 
 	if (from->size < 1 || !from->top)

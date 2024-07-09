@@ -6,7 +6,7 @@
 /*   By: ktieu <ktieu@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 11:08:49 by ktieu             #+#    #+#             */
-/*   Updated: 2024/07/07 22:33:16 by ktieu            ###   ########.fr       */
+/*   Updated: 2024/07/09 18:00:28 by ktieu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,22 +22,20 @@ typedef	struct s_data
 {
 	int 	ac;
 	char	**av;
-	int		total;
-	int 	amt_per_pair;
-	int 	max_pairs;
+	int		total_amt;
+	int 	amt_per_chunk;
+	int 	max_chunks;
 }	t_data;
 
 typedef struct	s_node
 {
-	int				origin;
-	int 			value;
-	int				in_pair;
+	int 			index;
 	struct	s_node *next;
 	struct	s_node *prev;
 }	t_index_node;
 
 /**
- * @param amt_per_pair : {int} the avergae amount of elements inside a pair (the last one is a bit different)
+ * @param amt_per_chunk : {int} the avergae amount of elements inside a pair (the last one is a bit different)
  */
 typedef struct s_stack
 {
@@ -48,6 +46,11 @@ typedef struct s_stack
 
 typedef struct s_actions
 {
+	int	need_sa;
+	int	need_sb;
+	int	need_ss;
+	int need_pa;
+	int	need_pb;
 	int	need_ra;
 	int	need_rb;
 	int	need_rr;
@@ -56,11 +59,19 @@ typedef struct s_actions
 	int	need_rrr;
 }	t_actions;
 
+
+typedef struct	s_chunk
+{
+	int	max;
+	int	median;
+	int	min;
+}	t_chunk;
+
 /*+------------------------------------------------------------+*/
 //	INDEX
 /*+------------------------------------------------------------+*/
 
-t_index_node	*ps_node_init(int value);
+t_index_node	*ps_node_init(int index);
 
 /*+------------------------------------------------------------+*/
 //	STACK UTILS
@@ -86,15 +97,12 @@ t_stack	ps_stack_init(void);
 
 void	ps_stack_push(t_stack *stack, t_index_node *to_push);
 
-t_index_node *ps_stack_pop(t_stack *stack);
-
 void ps_stack_free(t_stack *stack);
 
 /*+------------------------------------------------------------+*/
 //	DEBUG
 /*+------------------------------------------------------------+*/
 
-void	ft_debug_print_stack_cluster(t_stack *stack);
 void	ft_debug_print_stacks(t_stack *stack_a, t_stack *stack_b);
 
 #endif

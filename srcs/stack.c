@@ -6,7 +6,7 @@
 /*   By: ktieu <ktieu@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 11:17:59 by ktieu             #+#    #+#             */
-/*   Updated: 2024/07/04 10:53:11 by ktieu            ###   ########.fr       */
+/*   Updated: 2024/07/09 17:16:30 by ktieu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,24 +46,6 @@ void	ps_stack_push(t_stack *stack, t_index_node *to_push)
 }
 
 /**
- * Pop the top element from the stack
- */
-t_index_node *ps_stack_pop(t_stack *stack)
-{
-	t_index_node	*popped;
-	t_index_node	*top_node;
-
-	if (!stack || stack->size == 0)
-		return (NULL);
-	popped = stack->top;
-	stack->top->prev->next = NULL;
-	stack->top = popped->prev;
-	popped->prev = NULL;
-	stack->size--;
-	return (popped);
-}
-
-/**
  * Free memory regarding a struct <t_stack>
  */
 void ps_stack_free(t_stack *stack)
@@ -81,4 +63,18 @@ void ps_stack_free(t_stack *stack)
 	stack->bot = NULL;
 	stack->top = NULL;
 	stack->size = 0;
+}
+
+int	ps_stack_is_sorted(t_stack  *stack)
+{
+	t_index_node	*cur_node;
+
+	cur_node = stack->bot;
+	while (cur_node)
+	{
+		if (cur_node->next && cur_node->index < cur_node->next->index)
+			return(0);
+		cur_node= cur_node->next;
+	}
+	return (1);
 }
