@@ -6,7 +6,7 @@
 /*   By: ktieu <ktieu@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 11:53:52 by ktieu             #+#    #+#             */
-/*   Updated: 2024/07/13 20:04:35 by ktieu            ###   ########.fr       */
+/*   Updated: 2024/07/13 21:04:21 by ktieu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@ static inline int	ft_init(
 		return (0);
 	*a = ps_stack_init();
 	*b = ps_stack_init();
+	return (1);
 }
 
 static inline void	ft_cleanup(int **array, t_stack *a, t_stack *b)
@@ -62,9 +63,12 @@ int	main(int ac, char **av)
 	t_data	general_data;
 	t_stack	stack_a;
 	t_stack	stack_b;
-	t_index_node	*node;
 
-	ft_arg_check(ac, av);
+	if (ft_arg_check(ac, av) == 0)
+	{
+		ft_cleanup(&sorted_array, &stack_a, &stack_b);
+		ft_exit("Error", 1);
+	}
 	ft_parse_general_data(&general_data, ac, av);
 	if (!ft_init(&general_data, &sorted_array, &stack_a, &stack_b))
 	{
@@ -74,7 +78,10 @@ int	main(int ac, char **av)
 	if (ft_arg_parse(&general_data, sorted_array, &stack_a))
 		ps_sort(&general_data, &stack_a, &stack_b);
 	else
-		ft_printf("Error\n");
+	{
+		ft_cleanup(&sorted_array, &stack_a, &stack_b);
+		ft_exit("Error", 1);
+	}
 	ft_cleanup(&sorted_array, &stack_a, &stack_b);
 	return (0);	
 }

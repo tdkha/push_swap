@@ -6,7 +6,7 @@
 /*   By: ktieu <ktieu@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/27 11:47:16 by ktieu             #+#    #+#             */
-/*   Updated: 2024/07/13 16:49:27 by ktieu            ###   ########.fr       */
+/*   Updated: 2024/07/13 20:55:27 by ktieu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,11 +97,15 @@ void ps_b2a(t_data *data, t_stack *a, t_stack *b)
 
 void	ps_sort(t_data *data, t_stack *a, t_stack *b)
 {
-	if (data->total_amt > 3)
+	if (data->total_amt == 2)
+	{
+		if (a->top->index > a->top->prev->index)
+			ps_stack_action("sa",a ,b);
+	}
+	else if (data->total_amt > 3)
 	{
 		ps_a2b(data, a, b);
 		ps_b2a(data, a, b);
-		// ft_debug_print_stacks(a, b);
 	}
 	else if (data->total_amt == 3)
 		ps_sort3(a, b);

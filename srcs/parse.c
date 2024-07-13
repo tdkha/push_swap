@@ -6,7 +6,7 @@
 /*   By: ktieu <ktieu@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/29 16:03:49 by ktieu             #+#    #+#             */
-/*   Updated: 2024/07/13 20:07:41 by ktieu            ###   ########.fr       */
+/*   Updated: 2024/07/13 20:09:17 by ktieu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,6 +116,7 @@ t_stack	*ft_arg_parse_to_stack(t_data *general_data, int *arr, t_stack *stack)
 		node = ps_node_init(ft_atoi(general_data->av[i]));
 		if (!node)
 		{
+			ps_stack_free(stack);
 			return (NULL);
 		}
 		ps_stack_push(stack, node);
