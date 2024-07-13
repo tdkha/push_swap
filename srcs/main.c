@@ -6,7 +6,7 @@
 /*   By: ktieu <ktieu@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 11:53:52 by ktieu             #+#    #+#             */
-/*   Updated: 2024/07/09 18:57:39 by ktieu            ###   ########.fr       */
+/*   Updated: 2024/07/13 20:04:35 by ktieu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,22 +30,26 @@ static int	ft_arg_parse(
 	return (1);
 }
 
-static inline void	ft_init(
+static inline int	ft_init(
 	t_data *general_data,
 	int **array,
-	t_stack *a, t_stack *b)
+	t_stack *a,
+	t_stack *b)
 {
 	*array = (int *) malloc (sizeof(int) * (general_data->ac- - 1));
 	if (!(*array))
-		ft_exit("Failed to malloc an array in main function", 1);
+		return (0);
 	*a = ps_stack_init();
 	*b = ps_stack_init();
 }
 
-static inline void	ft_cleanup(int *array, t_stack *a, t_stack *b)
+static inline void	ft_cleanup(int **array, t_stack *a, t_stack *b)
 {
-	if (array)
-		free(array);
+	if (*array)
+	{
+		free(*array);
+		*array = NULL;
+	}
 	if (a != NULL)
 		ps_stack_free(a);
 	if (b != NULL)
@@ -60,19 +64,17 @@ int	main(int ac, char **av)
 	t_stack	stack_b;
 	t_index_node	*node;
 
-
 	ft_arg_check(ac, av);
-	general_data.ac = ac;
-	general_data.av = av;
-	general_data.max_chunks = 10;
-	general_data.total_amt = ac - 1;
-	ft_init(&general_data, &sorted_array, &stack_a, &stack_b);
-	if (ft_arg_parse(&general_data, sorted_array, &stack_a))
+	ft_parse_general_data(&general_data, ac, av);
+	if (!ft_init(&general_data, &sorted_array, &stack_a, &stack_b))
 	{
-		// ft_debug_print_stacks(&stack_a, &stack_b);
+		ft_cleanup(&sorted_array, &stack_a, &stack_b);
+		ft_exit("Error", 1);
+	}
+	if (ft_arg_parse(&general_data, sorted_array, &stack_a))
 		ps_sort(&general_data, &stack_a, &stack_b);
-		// ft_debug_print_stacks(&stack_a, &stack_b);
-	}	
-	ft_cleanup(sorted_array, &stack_a, &stack_b);
+	else
+		ft_printf("Error\n");
+	ft_cleanup(&sorted_array, &stack_a, &stack_b);
 	return (0);	
 }

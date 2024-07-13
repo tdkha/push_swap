@@ -6,7 +6,7 @@
 /*   By: ktieu <ktieu@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 11:08:49 by ktieu             #+#    #+#             */
-/*   Updated: 2024/07/09 18:00:28 by ktieu            ###   ########.fr       */
+/*   Updated: 2024/07/13 14:35:49 by ktieu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,9 @@
 //	STRUCT
 /*+------------------------------------------------------------+*/
 
+/**
+ * @param amt_per_chunk : {int} the avergae amount of elements inside a pair (the last one is a bit different)
+ */
 typedef	struct s_data
 {
 	int 	ac;
@@ -34,31 +37,13 @@ typedef struct	s_node
 	struct	s_node *prev;
 }	t_index_node;
 
-/**
- * @param amt_per_chunk : {int} the avergae amount of elements inside a pair (the last one is a bit different)
- */
+
 typedef struct s_stack
 {
 	int				size;
 	t_index_node	*top;
 	t_index_node	*bot;
 }	t_stack;
-
-typedef struct s_actions
-{
-	int	need_sa;
-	int	need_sb;
-	int	need_ss;
-	int need_pa;
-	int	need_pb;
-	int	need_ra;
-	int	need_rb;
-	int	need_rr;
-	int	need_rra;
-	int	need_rrb;
-	int	need_rrr;
-}	t_actions;
-
 
 typedef struct	s_chunk
 {
@@ -97,7 +82,7 @@ t_stack	ps_stack_init(void);
 
 void	ps_stack_push(t_stack *stack, t_index_node *to_push);
 
-void ps_stack_free(t_stack *stack);
+void 	ps_stack_free(t_stack *stack);
 
 /*+------------------------------------------------------------+*/
 //	DEBUG

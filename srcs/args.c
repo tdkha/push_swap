@@ -6,7 +6,7 @@
 /*   By: ktieu <ktieu@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/27 08:34:35 by ktieu             #+#    #+#             */
-/*   Updated: 2024/06/29 16:03:59 by ktieu            ###   ########.fr       */
+/*   Updated: 2024/07/13 19:47:16 by ktieu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,17 +39,12 @@ inline void	ft_arg_check(int ac, char **av)
 
 	i = 1;
 	if (ac < 2)
-	{
-		ft_printf_fd(2, "Error\n");
-		exit(1);
-	}
+		ft_exit("Error", 1);
 	while (i < ac)
 	{
 		if (ft_arg_check_type(av[i], 0 ,1) == 0)
-		{
-			ft_printf_fd(2, "Error\n");
-			exit(1);
-		}
+			ft_exit("Error", 1);
 		i++;
 	}
 }
+

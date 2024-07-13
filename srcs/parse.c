@@ -6,11 +6,27 @@
 /*   By: ktieu <ktieu@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/29 16:03:49 by ktieu             #+#    #+#             */
-/*   Updated: 2024/07/09 15:59:03 by ktieu            ###   ########.fr       */
+/*   Updated: 2024/07/13 20:07:41 by ktieu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
+
+static inline int	ft_arg_check_dup(int *sorted_arr, int size)
+{
+	int	i;
+
+	i = 0;
+	while (i < size - 1)
+	{
+		if (sorted_arr[i] == sorted_arr[i + 1])
+		{
+			return (0);
+		}
+		i++;
+	}
+	return (1);
+}
 
 int	*ft_arg_parse_to_arr(t_data *general_data, int *arr)
 {
@@ -25,13 +41,28 @@ int	*ft_arg_parse_to_arr(t_data *general_data, int *arr)
 		i++;
 	}
 	ft_quick_sort(arr, 0, i - 2);
+	if (!ft_arg_check_dup(arr, general_data->ac - 1))
+	{
+		return (NULL);
+	}
 	return (arr);
 }
 
-void	ft_parse_general_data(t_data *data, int size)
+void	ft_parse_general_data(
+	t_data *general_data,
+	int ac,
+	char **av
+)
 {
-	data->max_chunks = 6;
-	data->amt_per_chunk = (size + 1) / data->max_chunks;
+	general_data->ac = ac;
+	general_data->av = av;
+	if (ac - 1 <= 20)
+		general_data->max_chunks = 1;
+	else if (ac - 1 <= 100)
+		general_data->max_chunks = 4;
+	else
+		general_data->max_chunks = 10;
+	general_data->total_amt = ac - 1;
 }
 
 /**
@@ -57,21 +88,7 @@ static void ft_to_index(
 			break ;
 		found_index++;
 	}
-	found_index++;
 	node->index = found_index;
-// 	found_index++;
-// 	range = scaler * (data->amt_per_chunk);
-// 	while (found_index > range)
-// 	{
-// 		scaler++;
-// 		if (scaler > data->max_chunks)
-// 		{
-// 			scaler = data->max_chunks;
-// 			break;
-// 		}
-// 		range = scaler * (data->amt_per_chunk);
-// 	}
-// 	node->in_pair = scaler;
 }
 
 /**
@@ -99,8 +116,6 @@ t_stack	*ft_arg_parse_to_stack(t_data *general_data, int *arr, t_stack *stack)
 		node = ps_node_init(ft_atoi(general_data->av[i]));
 		if (!node)
 		{
-			ps_stack_free(stack);
-			ft_printf_fd(2, "push_swap: Failed to malloc <t_index_node>\n");
 			return (NULL);
 		}
 		ps_stack_push(stack, node);

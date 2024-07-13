@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   algo_b2a_utils.c                                   :+:      :+:    :+:   */
+/*   algo_b2a.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ktieu <ktieu@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/12 15:26:25 by ktieu             #+#    #+#             */
-/*   Updated: 2024/07/13 15:13:33 by ktieu            ###   ########.fr       */
+/*   Updated: 2024/07/13 14:28:22 by ktieu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,7 +119,7 @@ int	rotate_b(
 {
 	int	ihighest;
 
-	ihighest = index_inside_stack(b, highest, b->size);
+	ihighest = inside_stack(b, highest, b->size);
 	if (ihighest == -1)
 		return (0);
 	if (ihighest < (b->size / 2))
@@ -133,4 +133,32 @@ int	rotate_b(
 		return (1);
 	}
 	return (0);
+}
+
+
+void	b2a(t_data *data, t_stack *a, t_stack *b)
+{
+	int highest;
+	int	unordered_top;
+	int	unordered_bot;
+
+	unordered_bot = 0;
+	unordered_top = 0;
+	highest = b->size - 1;
+	while (b->size || unordered_bot > 0 || unordered_top > 0)
+	{
+		if (a_contains_largest_sort_a(a, &unordered_top, &unordered_bot, highest))
+			highest--;	
+		else if (b->size && b->top->index == highest)
+		{
+			reorder_before_push(a, b, &unordered_top, &unordered_bot);
+			highest--;
+		}
+		else if (push_almost_highest(a, b, &unordered_top, &unordered_bot))
+			continue;
+		else if (rotate_b(a, b, highest))
+			continue;
+		else
+			highest--;
+	}
 }
