@@ -6,37 +6,41 @@
 /*   By: ktieu <ktieu@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/27 08:34:35 by ktieu             #+#    #+#             */
-/*   Updated: 2024/07/13 21:00:47 by ktieu            ###   ########.fr       */
+/*   Updated: 2024/07/13 21:57:45 by ktieu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
 
-
-static int	check_valid_num(const char *str)
+static int check_valid_num(const char *str, int sign)
 {
 	long long int	res;
-	int				sign;
 
 	res = 0;
-	sign = 1;
 	while (*str == ' ' || (*str >= '\t' && *str <= '\r'))
 		str++;
 	if (*str == '+' || *str == '-')
 	{
 		if (*str == '-')
-			sign *= -1;
+			sign = -1;
 		str++;
 	}
-	while ('0' <= *str && *str <= '9')
+	if (!(*str >= '0' && *str <= '9'))
+		return (0);
+	while (*str >= '0' && *str <= '9')
 	{
-		res = res * 10 + (*str - 48);
+		res = res * 10 + (*str - '0');
+		if ((sign == 1 && res > 2147483647) || (sign == -1 && res > 2147483648))
+			return (0);
 		str++;
 	}
-	if (res > 2147483647 || res < -2147483647 - 1)
-			return (0);
+	while (*str == ' ' || (*str >= '\t' && *str <= '\r'))
+		str++;
+	if (*str != '\0')
+		return (0);
 	return (1);
 }
+
 
 static inline int ft_arg_check_type(
 	char *str,
@@ -80,7 +84,7 @@ inline int	ft_arg_check(int ac, char **av)
 	{
 		if (!ft_arg_check_type(av[i], 0 ,1))
 			return (0);
-		if (!check_valid_num(av[i]))
+		if (!check_valid_num(av[i], 1))
 			return (0);
 		i++;
 	}
