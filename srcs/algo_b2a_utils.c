@@ -6,7 +6,7 @@
 /*   By: ktieu <ktieu@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/12 15:26:25 by ktieu             #+#    #+#             */
-/*   Updated: 2024/07/13 15:13:33 by ktieu            ###   ########.fr       */
+/*   Updated: 2024/07/13 23:36:34 by ktieu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
  */
 int	index_inside_stack(
 	t_stack *stack,
-	int	index,
+	int index,
 	int size
 )
 {
@@ -40,7 +40,7 @@ int	a_contains_largest_sort_a(
 	t_stack *a,
 	int *unordered_top,
 	int *unordered_bot,
-	int	highest
+	int highest
 )
 {
 	if (!a || a->size == 0)
@@ -92,14 +92,14 @@ int	push_almost_highest(
 	if (b->top->index < a->top->index
 		&& (*unordered_bot == 0 || b->top->index > a->bot->index))
 	{
-		
 		ps_stack_action("pa", a, b);
 		(*unordered_top)++;
 		return (1);
 	}
-	else if (*unordered_bot == 0 || b->top->index > a->bot->index) 
+	else if (*unordered_bot == 0 || b->top->index > a->bot->index)
 	{
-		while (*unordered_top && b->top->index > a->top->index) {
+		while (*unordered_top && b->top->index > a->top->index)
+		{
 			ps_stack_action("ra", a, b);
 			(*unordered_top)--;
 			(*unordered_bot)++;

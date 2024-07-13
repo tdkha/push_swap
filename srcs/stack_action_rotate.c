@@ -6,7 +6,7 @@
 /*   By: ktieu <ktieu@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 16:12:55 by ktieu             #+#    #+#             */
-/*   Updated: 2024/07/09 11:40:24 by ktieu            ###   ########.fr       */
+/*   Updated: 2024/07/13 23:34:54 by ktieu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,19 +16,17 @@
  * shift up, the top becomes the head
  * Trên xuống dưới
 */
-int ps_rotate(t_stack *stack)
+int	ps_rotate(t_stack *stack)
 {
-	t_index_node *tail_node;
-	t_index_node *prev_node;
+	t_index_node	*tail_node;
+	t_index_node	*prev_node;
 
 	if (stack->size < 2 || !stack->top)
 		return (0);
 	tail_node = stack->top;
 	prev_node = tail_node->prev;
-	// Unlink the top node
 	prev_node->next = NULL;
 	stack->top = prev_node;
-	// Move the top node to the front (head)
 	tail_node->prev = NULL;
 	tail_node->next = stack->bot;
 	stack->bot->prev = tail_node;
@@ -36,19 +34,17 @@ int ps_rotate(t_stack *stack)
 	return (1);
 }
 
-static int ps_rotate_no_print(t_stack *stack)
+static int	ps_rotate_no_print(t_stack *stack)
 {
-	t_index_node *tail_node;
-	t_index_node *prev_node;
+	t_index_node	*tail_node;
+	t_index_node	*prev_node;
 
 	if (stack->size < 2 || !stack->top)
 		return (0);
 	tail_node = stack->top;
 	prev_node = tail_node->prev;
-	// Unlink the top node
 	prev_node->next = NULL;
 	stack->top = prev_node;
-	// Move the top node to the front (head)
 	tail_node->prev = NULL;
 	tail_node->next = stack->bot;
 	stack->bot->prev = tail_node;

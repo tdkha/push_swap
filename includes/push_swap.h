@@ -6,7 +6,7 @@
 /*   By: ktieu <ktieu@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 11:54:23 by ktieu             #+#    #+#             */
-/*   Updated: 2024/07/13 20:22:41 by ktieu            ###   ########.fr       */
+/*   Updated: 2024/07/13 23:28:12 by ktieu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,10 +24,7 @@ int			ft_arg_check(int ac, char **av);
 /*+------------------------------------------------------------+*/
 //	Argument parsing
 /*+------------------------------------------------------------+*/
-void		ft_parse_general_data(
-				t_data *general_data,
-				int ac,
-				char **av);
+
 int			*ft_arg_parse_to_arr(t_data *general_data, int *arr);
 t_stack		*ft_arg_parse_to_stack(t_data *general_data, int *arr, t_stack *stack);
 /*+------------------------------------------------------------+*/

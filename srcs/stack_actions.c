@@ -6,15 +6,15 @@
 /*   By: ktieu <ktieu@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/04 11:40:51 by ktieu             #+#    #+#             */
-/*   Updated: 2024/07/09 18:08:48 by ktieu            ###   ########.fr       */
+/*   Updated: 2024/07/13 23:35:38 by ktieu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/stack.h"
 
-static int do_push(char c, t_stack *a, t_stack *b)
+static int	do_push(char c, t_stack *a, t_stack *b)
 {
-	int res;
+	int	res;
 
 	res = 1;
 	if (c == 'a')
@@ -32,9 +32,9 @@ static int do_push(char c, t_stack *a, t_stack *b)
 	return (res);
 }
 
-static int do_swap(char c, t_stack *a, t_stack *b)
+static int	do_swap(char c, t_stack *a, t_stack *b)
 {
-	int res;
+	int	res;
 
 	res = 1;
 	if (c == 'a')
@@ -58,9 +58,9 @@ static int do_swap(char c, t_stack *a, t_stack *b)
 	return (res);
 }
 
-static int do_rotate(char c, t_stack *a, t_stack *b)
+static int	do_rotate(char c, t_stack *a, t_stack *b)
 {
-	int res;
+	int	res;
 
 	res = 1;
 	if (c == 'a')
@@ -83,9 +83,9 @@ static int do_rotate(char c, t_stack *a, t_stack *b)
 	return (res);
 }
 
-static int do_reverse_rotate(char c, t_stack *a, t_stack *b)
+static int	do_reverse_rotate(char c, t_stack *a, t_stack *b)
 {
-	int res;
+	int	res;
 
 	res = 1;
 	if (c == 'a')
@@ -109,9 +109,9 @@ static int do_reverse_rotate(char c, t_stack *a, t_stack *b)
 	return (res);
 }
 
-void ps_stack_action(char *str, t_stack *a, t_stack *b)
+void	ps_stack_action(char *str, t_stack *a, t_stack *b)
 {
-	int res;
+	int	res;
 
 	res = 0;
 	if (str[0] == 'r')

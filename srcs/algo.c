@@ -6,14 +6,14 @@
 /*   By: ktieu <ktieu@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/27 11:47:16 by ktieu             #+#    #+#             */
-/*   Updated: 2024/07/13 21:23:47 by ktieu            ###   ########.fr       */
+/*   Updated: 2024/07/13 23:32:47 by ktieu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/algo.h"
 #include "../includes/push_swap.h"
 
-static inline void a2b_push_rotate(
+static inline void	a2b_push_rotate(
 	t_chunk *chunk,
 	t_stack *a,
 	t_stack *b
@@ -49,28 +49,25 @@ void	ps_a2b(t_data *data, t_stack *a, t_stack *b)
 	chunk = a2b_chunk_init(data, a);
 	while (a->size > 3)
 	{
-		// printf("Chunk min:%d\n", chunk.min);
-		// printf("Chunk max:%d\n", chunk.max);
-		// ft_debug_print_stacks(a, b);
 		if (chunk_check_index_exist(data, &chunk, a))
 		{
 			a2b_push_rotate(&chunk, a, b);
 			a2b_update_chunk(data, &chunk, a);
 		}
-		// ft_debug_print_stacks(a, b);
 	}
 	if (!ps_stack_is_sorted(a))
 		ps_sort3(a, b);
 }
+
 /**
  * Second phase of pushing A to B
  * Description:
  * - u_top represents unordered numbers at the top
  * - u_bot represents unordered numbers at the bottom
  */
-void ps_b2a(t_data *data, t_stack *a, t_stack *b)
+void	ps_b2a(t_data *data, t_stack *a, t_stack *b)
 {
-	int highest;
+	int	highest;
 	int	u_top;
 	int	u_bot;
 
@@ -80,16 +77,16 @@ void ps_b2a(t_data *data, t_stack *a, t_stack *b)
 	while (b->size || u_bot > 0 || u_top > 0)
 	{
 		if (a_contains_largest_sort_a(a, &u_top, &u_bot, highest))
-			highest--;	
+			highest--;
 		else if (b->size && b->top->index == highest)
 		{
 			reorder_before_push(a, b, &u_top, &u_bot);
 			highest--;
 		}
 		else if (push_almost_highest(a, b, &u_top, &u_bot))
-			continue;
+			continue ;
 		else if (rotate_b(a, b, highest))
-			continue;
+			continue ;
 		else
 			highest--;
 	}
@@ -98,13 +95,11 @@ void ps_b2a(t_data *data, t_stack *a, t_stack *b)
 void	ps_sort(t_data *data, t_stack *a, t_stack *b)
 {
 	if (ps_stack_is_sorted(a))
-	{
-		return;
-	}
+		return ;
 	if (data->total_amt == 2)
 	{
 		if (a->top->index > a->top->prev->index)
-			ps_stack_action("sa",a ,b);
+			ps_stack_action("sa", a, b);
 	}
 	else if (data->total_amt > 3)
 	{

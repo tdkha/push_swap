@@ -6,13 +6,13 @@
 /*   By: ktieu <ktieu@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/27 08:34:35 by ktieu             #+#    #+#             */
-/*   Updated: 2024/07/13 21:59:04 by ktieu            ###   ########.fr       */
+/*   Updated: 2024/07/13 23:29:08 by ktieu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
 
-static int check_valid_num(const char *str, int sign)
+static int	check_valid_num(const char *str, int sign)
 {
 	long long int	res;
 
@@ -41,8 +41,7 @@ static int check_valid_num(const char *str, int sign)
 	return (1);
 }
 
-
-static inline int ft_arg_check_type(
+static inline int	ft_arg_check_type(
 	char *str,
 	int i,
 	int sign)
@@ -81,7 +80,7 @@ inline int	ft_arg_check(int ac, char **av)
 		return (0);
 	while (i < ac)
 	{
-		if (!ft_arg_check_type(av[i], 0 ,1))
+		if (!ft_arg_check_type(av[i], 0, 1))
 			return (0);
 		if (!check_valid_num(av[i], 1))
 			return (0);

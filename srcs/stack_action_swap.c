@@ -6,7 +6,7 @@
 /*   By: ktieu <ktieu@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 16:12:38 by ktieu             #+#    #+#             */
-/*   Updated: 2024/07/04 11:45:40 by ktieu            ###   ########.fr       */
+/*   Updated: 2024/07/13 23:33:29 by ktieu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,6 @@
 
 int	ps_swap(t_stack *stack)
 {
-	// if(stack->top)
-	// 	printf("swap: %d\n", stack->top->value);
 	t_index_node	*tail_node;
 	t_index_node	*prev_node;
 	t_index_node	*prev_prev_node;
@@ -26,9 +24,6 @@ int	ps_swap(t_stack *stack)
 	prev_node = tail_node->prev;
 	prev_prev_node = prev_node->prev;
 	prev_node->next = tail_node->next;
-	// if (prev_node->next)
-	// 	prev_node->next->prev = prev_node;
-
 	prev_node->prev = tail_node;
 	tail_node->next = prev_node;
 	tail_node->prev = prev_prev_node;
@@ -36,7 +31,6 @@ int	ps_swap(t_stack *stack)
 		prev_prev_node->next = tail_node;
 	else
 		stack->bot = tail_node;
-
 	stack->top = prev_node;
 	return (1);
 }

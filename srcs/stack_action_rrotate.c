@@ -6,7 +6,7 @@
 /*   By: ktieu <ktieu@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 16:13:32 by ktieu             #+#    #+#             */
-/*   Updated: 2024/07/04 11:45:43 by ktieu            ###   ########.fr       */
+/*   Updated: 2024/07/13 23:34:02 by ktieu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,8 @@
  * shift down, the head becomes the top
  * Dưới lên trên
 */
-int ps_rrotate(t_stack *stack)
+int	ps_rrotate(t_stack *stack)
 {
-	// if (stack->top)
-	// 	printf("rrotate: %d\n", stack->top->value);
 	t_index_node	*head_node;
 	t_index_node	*next_node;
 
@@ -27,10 +25,8 @@ int ps_rrotate(t_stack *stack)
 		return (0);
 	head_node = stack->bot;
 	next_node = head_node->next;
-	// Unlink the head node
 	next_node->prev = NULL;
 	stack->bot = next_node;
-	// Move the head node to the end (top)
 	head_node->next = NULL;
 	head_node->prev = stack->top;
 	stack->top->next = head_node;

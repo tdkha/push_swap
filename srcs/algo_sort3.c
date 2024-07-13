@@ -6,13 +6,13 @@
 /*   By: ktieu <ktieu@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/03 00:41:15 by ktieu             #+#    #+#             */
-/*   Updated: 2024/07/13 20:54:31 by ktieu            ###   ########.fr       */
+/*   Updated: 2024/07/13 23:41:05 by ktieu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/algo.h"
 
-static inline void tail_is_largest(t_stack *a, t_stack *b)
+static inline void	tail_is_largest(t_stack *a, t_stack *b)
 {
 	ps_stack_action("ra", a, b);
 	if (a->top->index > a->top->prev->index)
@@ -21,20 +21,19 @@ static inline void tail_is_largest(t_stack *a, t_stack *b)
 	}
 }
 
-static inline void mid_is_largest(t_stack *a, t_stack *b)
+static inline void	mid_is_largest(t_stack *a, t_stack *b)
 {
 	if (a->top->index > a->bot->index)
 	{
 		ps_stack_action("rra", a, b);
-		return;
+		return ;
 	}
 	else
 	{
 		ps_stack_action("sa", a, b);
 		ps_stack_action("ra", a, b);
-		return;
+		return ;
 	}
-
 }
 
 void	ps_sort3(t_stack *a, t_stack *b)
@@ -54,7 +53,7 @@ void	ps_sort3(t_stack *a, t_stack *b)
 	else
 	{
 		if (a->bot->index > mid_mode->index)
-			ps_stack_action("sa",a, b);
+			ps_stack_action("sa", a, b);
 		else
 			mid_is_largest(a, b);
 	}

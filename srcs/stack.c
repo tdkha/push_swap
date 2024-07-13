@@ -6,7 +6,7 @@
 /*   By: ktieu <ktieu@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 11:17:59 by ktieu             #+#    #+#             */
-/*   Updated: 2024/07/09 17:16:30 by ktieu            ###   ########.fr       */
+/*   Updated: 2024/07/13 23:30:33 by ktieu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ void	ps_stack_push(t_stack *stack, t_index_node *to_push)
 /**
  * Free memory regarding a struct <t_stack>
  */
-void ps_stack_free(t_stack *stack)
+void	ps_stack_free(t_stack *stack)
 {
 	t_index_node	*cur_node;
 	t_index_node	*tmp_node;
@@ -65,7 +65,7 @@ void ps_stack_free(t_stack *stack)
 	stack->size = 0;
 }
 
-int	ps_stack_is_sorted(t_stack  *stack)
+int	ps_stack_is_sorted(t_stack *stack)
 {
 	t_index_node	*cur_node;
 
@@ -73,8 +73,8 @@ int	ps_stack_is_sorted(t_stack  *stack)
 	while (cur_node)
 	{
 		if (cur_node->next && cur_node->index < cur_node->next->index)
-			return(0);
-		cur_node= cur_node->next;
+			return (0);
+		cur_node = cur_node->next;
 	}
 	return (1);
 }

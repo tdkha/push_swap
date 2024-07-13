@@ -6,7 +6,7 @@
 /*   By: ktieu <ktieu@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/29 16:03:49 by ktieu             #+#    #+#             */
-/*   Updated: 2024/07/13 20:09:17 by ktieu            ###   ########.fr       */
+/*   Updated: 2024/07/13 23:28:22 by ktieu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,37 +48,20 @@ int	*ft_arg_parse_to_arr(t_data *general_data, int *arr)
 	return (arr);
 }
 
-void	ft_parse_general_data(
-	t_data *general_data,
-	int ac,
-	char **av
-)
-{
-	general_data->ac = ac;
-	general_data->av = av;
-	if (ac - 1 <= 20)
-		general_data->max_chunks = 1;
-	else if (ac - 1 <= 100)
-		general_data->max_chunks = 4;
-	else
-		general_data->max_chunks = 10;
-	general_data->total_amt = ac - 1;
-}
-
 /**
  * Use the existing <value> property to find the index in the sorted array
  * Replace the <value> by the index
  * Search for whihch pair the index belongs to
  */
-static void ft_to_index(
+static void	ft_to_index(
 	t_data *data,
-	int *arr, 
+	int *arr,
 	t_stack *stack,
 	t_index_node *node)
 {
 	int	found_index;
 	int	scaler;
-	int range;
+	int	range;
 
 	scaler = 1;
 	found_index = 0;
@@ -89,6 +72,18 @@ static void ft_to_index(
 		found_index++;
 	}
 	node->index = found_index;
+}
+
+static void	convert_num_to_index(t_data *data, int *arr, t_stack *stack)
+{
+	t_index_node	*node;
+
+	node = stack->top;
+	while (node)
+	{
+		ft_to_index(data, arr, stack, node);
+		node = node->prev;
+	}
 }
 
 /**
@@ -102,18 +97,18 @@ static void ft_to_index(
  * @param arr {int *} an array
  * @param stack {t_stack} a stack
  */
-t_stack	*ft_arg_parse_to_stack(t_data *general_data, int *arr, t_stack *stack)
+t_stack	*ft_arg_parse_to_stack(t_data *data, int *arr, t_stack *stack)
 {
 	int				i;
 	t_index_node	*node;
-	
+
 	node = NULL;
-	i = general_data->ac - 1;
-	if (general_data->ac < 2)
+	i = data->ac - 1;
+	if (data->ac < 2)
 		return (NULL);
 	while (i > 0)
 	{
-		node = ps_node_init(ft_atoi(general_data->av[i]));
+		node = ps_node_init(ft_atoi(data->av[i]));
 		if (!node)
 		{
 			ps_stack_free(stack);
@@ -122,12 +117,7 @@ t_stack	*ft_arg_parse_to_stack(t_data *general_data, int *arr, t_stack *stack)
 		ps_stack_push(stack, node);
 		i--;
 	}
-	node = stack->top;
-	general_data->amt_per_chunk = (stack->size + 1) / (general_data->max_chunks);
-	while (node)
-	{
-		ft_to_index(general_data, arr, stack, node);
-		node = node->prev;
-	}
+	data->amt_per_chunk = (stack->size + 1) / (data->max_chunks);
+	convert_num_to_index(data, arr, stack);
 	return (stack);
 }

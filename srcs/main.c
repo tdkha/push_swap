@@ -6,12 +6,11 @@
 /*   By: ktieu <ktieu@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 11:53:52 by ktieu             #+#    #+#             */
-/*   Updated: 2024/07/13 22:08:23 by ktieu            ###   ########.fr       */
+/*   Updated: 2024/07/13 23:53:28 by ktieu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
-
 
 /**
  * Program parsing function
@@ -24,7 +23,7 @@ static int	ft_arg_parse(
 	int *arr, t_stack *stack)
 {
 	if (ft_arg_parse_to_arr(general_data, arr) == NULL)
-		return (0); 
+		return (0);
 	if (ft_arg_parse_to_stack(general_data, arr, stack) == NULL)
 		return (0);
 	return (1);
@@ -36,7 +35,7 @@ static inline int	ft_init(
 	t_stack *a,
 	t_stack *b)
 {
-	*array = (int *) malloc (sizeof(int) * (general_data->ac- - 1));
+	*array = (int *) malloc (sizeof(int) * (general_data->ac - 1));
 	if (!(*array))
 		return (0);
 	*a = ps_stack_init();
@@ -57,7 +56,22 @@ static inline void	ft_cleanup(int **array, t_stack *a, t_stack *b)
 		ps_stack_free(b);
 }
 
-
+static void	ft_parse_general_data(
+	t_data *general_data,
+	int ac,
+	char **av
+)
+{
+	general_data->ac = ac;
+	general_data->av = av;
+	if (ac - 1 <= 20)
+		general_data->max_chunks = 1;
+	else if (ac - 1 <= 100)
+		general_data->max_chunks = 4;
+	else
+		general_data->max_chunks = 10;
+	general_data->total_amt = ac - 1;
+}
 
 int	main(int ac, char **av)
 {
@@ -84,5 +98,5 @@ int	main(int ac, char **av)
 		ft_exit("Error", 1);
 	}
 	ft_cleanup(&sorted_array, &stack_a, &stack_b);
-	return (0);	
+	return (0);
 }

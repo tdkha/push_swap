@@ -6,14 +6,14 @@
 /*   By: ktieu <ktieu@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/09 17:15:41 by ktieu             #+#    #+#             */
-/*   Updated: 2024/07/13 21:08:14 by ktieu            ###   ########.fr       */
+/*   Updated: 2024/07/13 23:49:52 by ktieu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/algo.h"
 
 int	chunk_check_index_exist(
-	t_data * data,
+	t_data *data,
 	t_chunk *chunk,
 	t_stack *a
 )
@@ -28,13 +28,12 @@ int	chunk_check_index_exist(
 		if (node->index <= chunk->max && node->index >= chunk->min)
 		{
 			exist = 1;
-			break;
+			break ;
 		}
 		node = node->prev;
 	}
 	return (exist);
 }
-
 
 int	index_in_range(
 	int index,
@@ -46,7 +45,23 @@ int	index_in_range(
 	{
 		return (1);
 	}
-	return  (0);
+	return (0);
+}
+
+static void	check_chunk_in_range(
+	t_chunk *chunk,
+	int *found_chunk_top,
+	int *found_chunk_bot,
+	t_index_node *node)
+{
+	while (node)
+	{
+		if (index_in_range(node->index, chunk->median, chunk->max))
+			*found_chunk_top = 1;
+		if (index_in_range(node->index, chunk->min, chunk->median))
+			*found_chunk_bot = 1;
+		node = node->prev;
+	}
 }
 
 void	a2b_update_chunk(
@@ -62,14 +77,7 @@ void	a2b_update_chunk(
 	found_chunk_top = 0;
 	found_chunk_bot = 0;
 	node = a->top;
-	while (node)
-	{
-		if (index_in_range(node->index, chunk->median, chunk->max))
-			found_chunk_top = 1;
-		if (index_in_range(node->index, chunk->min, chunk->median))
-			found_chunk_bot = 1;
-		node = node->prev;
-	}
+	check_chunk_in_range(chunk, &found_chunk_top, &found_chunk_bot, node);
 	if (!found_chunk_top)
 	{
 		chunk->max += (data->amt_per_chunk / 2);
@@ -87,7 +95,7 @@ void	a2b_update_chunk(
 t_chunk	a2b_chunk_init(t_data *data, t_stack *a)
 {
 	t_chunk	chunk;
-	
+
 	chunk.median = (a->size - 3) / 2;
 	chunk.max = chunk.median + (data->amt_per_chunk / 2);
 	if (chunk.max >= data->total_amt - 3)
