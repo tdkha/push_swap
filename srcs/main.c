@@ -6,7 +6,7 @@
 /*   By: ktieu <ktieu@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 11:53:52 by ktieu             #+#    #+#             */
-/*   Updated: 2024/07/13 21:56:23 by ktieu            ###   ########.fr       */
+/*   Updated: 2024/07/13 22:08:23 by ktieu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,8 @@ static inline void	ft_cleanup(int **array, t_stack *a, t_stack *b)
 		ps_stack_free(b);
 }
 
+
+
 int	main(int ac, char **av)
 {
 	int		error;
@@ -67,6 +69,8 @@ int	main(int ac, char **av)
 
 	sorted_array = NULL;
 	error = 0;
+	if (ac == 1)
+		return (0);
 	ft_parse_general_data(&general_data, ac, av);
 	if (ft_arg_check(ac, av) == 0)
 		error = 1;

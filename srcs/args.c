@@ -6,7 +6,7 @@
 /*   By: ktieu <ktieu@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/27 08:34:35 by ktieu             #+#    #+#             */
-/*   Updated: 2024/07/13 21:57:45 by ktieu            ###   ########.fr       */
+/*   Updated: 2024/07/13 21:59:04 by ktieu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,6 @@ static inline int ft_arg_check_type(
 	int i,
 	int sign)
 {
-
 	while (str[i] && ft_isspace(str[i]))
 		i++;
 	if (str[i] == '-' || str[i] == '+')
