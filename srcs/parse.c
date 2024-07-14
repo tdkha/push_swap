@@ -6,13 +6,13 @@
 /*   By: ktieu <ktieu@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/29 16:03:49 by ktieu             #+#    #+#             */
-/*   Updated: 2024/07/14 12:17:25 by ktieu            ###   ########.fr       */
+/*   Updated: 2024/07/14 14:37:58 by ktieu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
 
-static inline int	ft_arg_check_dup(int *sorted_arr, int size)
+inline int	ft_arg_check_dup(int *sorted_arr, int size)
 {
 	int	i;
 

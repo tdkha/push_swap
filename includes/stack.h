@@ -6,7 +6,7 @@
 /*   By: ktieu <ktieu@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 11:08:49 by ktieu             #+#    #+#             */
-/*   Updated: 2024/07/14 12:26:27 by ktieu            ###   ########.fr       */
+/*   Updated: 2024/07/14 15:51:46 by ktieu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,8 @@ int				ps_rotate(t_stack *stack);
 int				ps_rrotate(t_stack *stack);
 int				ps_swap(t_stack *stack);
 int				ps_rotate2(t_stack *a, t_stack *b);
-void			ps_stack_action(char *str, t_stack *a, t_stack *b);
+int				ps_rrotate2(t_stack *a, t_stack *b);
+int				ps_stack_action(char *str, t_stack *a, t_stack *b);
 /*+------------------------------------------------------------+*/
 //	STACK
 /*+------------------------------------------------------------+*/
