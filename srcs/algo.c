@@ -6,7 +6,7 @@
 /*   By: ktieu <ktieu@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/27 11:47:16 by ktieu             #+#    #+#             */
-/*   Updated: 2024/07/13 23:32:47 by ktieu            ###   ########.fr       */
+/*   Updated: 2024/07/14 12:20:05 by ktieu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ void	ps_a2b(t_data *data, t_stack *a, t_stack *b)
 	chunk = a2b_chunk_init(data, a);
 	while (a->size > 3)
 	{
-		if (chunk_check_index_exist(data, &chunk, a))
+		if (chunk_check_index_exist(&chunk, a))
 		{
 			a2b_push_rotate(&chunk, a, b);
 			a2b_update_chunk(data, &chunk, a);
@@ -65,7 +65,7 @@ void	ps_a2b(t_data *data, t_stack *a, t_stack *b)
  * - u_top represents unordered numbers at the top
  * - u_bot represents unordered numbers at the bottom
  */
-void	ps_b2a(t_data *data, t_stack *a, t_stack *b)
+void	ps_b2a(t_stack *a, t_stack *b)
 {
 	int	highest;
 	int	u_top;
@@ -104,7 +104,7 @@ void	ps_sort(t_data *data, t_stack *a, t_stack *b)
 	else if (data->total_amt > 3)
 	{
 		ps_a2b(data, a, b);
-		ps_b2a(data, a, b);
+		ps_b2a(a, b);
 	}
 	else if (data->total_amt == 3)
 		ps_sort3(a, b);

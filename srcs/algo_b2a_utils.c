@@ -6,7 +6,7 @@
 /*   By: ktieu <ktieu@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/12 15:26:25 by ktieu             #+#    #+#             */
-/*   Updated: 2024/07/13 23:36:34 by ktieu            ###   ########.fr       */
+/*   Updated: 2024/07/14 12:19:16 by ktieu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ int	a_contains_largest_sort_a(
 	return (0);
 }
 
-int	reorder_before_push(
+void	reorder_before_push(
 	t_stack *a,
 	t_stack *b,
 	int *unordered_top,

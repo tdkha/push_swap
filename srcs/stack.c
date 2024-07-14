@@ -6,7 +6,7 @@
 /*   By: ktieu <ktieu@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 11:17:59 by ktieu             #+#    #+#             */
-/*   Updated: 2024/07/13 23:30:33 by ktieu            ###   ########.fr       */
+/*   Updated: 2024/07/14 08:39:58 by ktieu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,9 @@ void	ps_stack_free(t_stack *stack)
 	stack->size = 0;
 }
 
+/**
+ * Check if a stack is sorted from top down in ascending order
+ */
 int	ps_stack_is_sorted(t_stack *stack)
 {
 	t_index_node	*cur_node;

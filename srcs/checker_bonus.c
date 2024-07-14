@@ -1,20 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_abs.c                                           :+:      :+:    :+:   */
+/*   checker_bonus.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ktieu <ktieu@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/07/06 16:25:33 by ktieu             #+#    #+#             */
-/*   Updated: 2024/07/14 12:22:47 by ktieu            ###   ########.fr       */
+/*   Created: 2024/07/14 12:07:17 by ktieu             #+#    #+#             */
+/*   Updated: 2024/07/14 12:09:25 by ktieu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./libft.h"
+#include "../includes/checker_bonus.h"
 
-int	ft_abs(int value)
+int	main(int ac, char **av)
 {
-	if (value < 0)
-		return (-value);
-	return (value);
+	int		error;
+	int		*sorted_array;
+	t_data	general_data;
+	t_stack	stack_a = {0};
+	t_stack	stack_b = {0};
+
+	error = 0;
 }

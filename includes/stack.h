@@ -6,37 +6,36 @@
 /*   By: ktieu <ktieu@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 11:08:49 by ktieu             #+#    #+#             */
-/*   Updated: 2024/07/13 14:35:49 by ktieu            ###   ########.fr       */
+/*   Updated: 2024/07/14 12:26:27 by ktieu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PS_STACK_H
-# define PS_STACK_H
+#ifndef STACK_H
+# define STACK_H
 
-#include "../libft/libft.h"
+# include "../libft/libft.h"
 /*+------------------------------------------------------------+*/
 //	STRUCT
 /*+------------------------------------------------------------+*/
 
 /**
- * @param amt_per_chunk : {int} the avergae amount of elements inside a pair (the last one is a bit different)
+ * @param amt_per_chunk : {int} the avergae amount of elements inside a pair
  */
-typedef	struct s_data
+typedef struct s_data
 {
-	int 	ac;
+	int		ac;
 	char	**av;
 	int		total_amt;
-	int 	amt_per_chunk;
-	int 	max_chunks;
+	int		amt_per_chunk;
+	int		max_chunks;
 }	t_data;
 
-typedef struct	s_node
+typedef struct s_node
 {
-	int 			index;
-	struct	s_node *next;
-	struct	s_node *prev;
+	int				index;
+	struct s_node	*next;
+	struct s_node	*prev;
 }	t_index_node;
-
 
 typedef struct s_stack
 {
@@ -45,7 +44,7 @@ typedef struct s_stack
 	t_index_node	*bot;
 }	t_stack;
 
-typedef struct	s_chunk
+typedef struct s_chunk
 {
 	int	max;
 	int	median;
@@ -62,32 +61,32 @@ t_index_node	*ps_node_init(int index);
 //	STACK UTILS
 /*+------------------------------------------------------------+*/
 
-int		ps_stack_is_sorted(t_stack  *stack);
+int				ps_stack_is_sorted(t_stack *stack);
 
 /*+------------------------------------------------------------+*/
 //	STACK ACTIONS
 /*+------------------------------------------------------------+*/
 
-int		ps_push(t_stack *from, t_stack *to);
-int		ps_rotate(t_stack *stack);
-int		ps_rrotate(t_stack *stack);
-int		ps_swap(t_stack *stack);
-int		ps_rotate2(t_stack *a, t_stack *b);
-void	ps_stack_action(char *str, t_stack *a, t_stack *b);
+int				ps_push(t_stack *from, t_stack *to);
+int				ps_rotate(t_stack *stack);
+int				ps_rrotate(t_stack *stack);
+int				ps_swap(t_stack *stack);
+int				ps_rotate2(t_stack *a, t_stack *b);
+void			ps_stack_action(char *str, t_stack *a, t_stack *b);
 /*+------------------------------------------------------------+*/
 //	STACK
 /*+------------------------------------------------------------+*/
 
-t_stack	ps_stack_init(void);
+t_stack			ps_stack_init(void);
 
-void	ps_stack_push(t_stack *stack, t_index_node *to_push);
+void			ps_stack_push(t_stack *stack, t_index_node *to_push);
 
-void 	ps_stack_free(t_stack *stack);
+void			ps_stack_free(t_stack *stack);
 
 /*+------------------------------------------------------------+*/
 //	DEBUG
 /*+------------------------------------------------------------+*/
 
-void	ft_debug_print_stacks(t_stack *stack_a, t_stack *stack_b);
+void			ft_debug_print_stacks(t_stack *stack_a, t_stack *stack_b);
 
 #endif

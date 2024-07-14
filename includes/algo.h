@@ -6,36 +6,33 @@
 /*   By: ktieu <ktieu@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/28 13:30:26 by ktieu             #+#    #+#             */
-/*   Updated: 2024/07/13 20:56:27 by ktieu            ###   ########.fr       */
+/*   Updated: 2024/07/14 12:27:18 by ktieu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 
 #ifndef ALGO_H
 # define ALGO_H
 
-#include "../libft/libft.h"
-#include "./stack.h"
+# include "../libft/libft.h"
+# include "./stack.h"
 
 /*+------------------------------------------------------------+*/
 //	ALGO UTILS
 /*+------------------------------------------------------------+*/
 
-void	ft_swap_num(int* a, int* b);
+void	ft_swap_num(int *a, int *b);
 
 void	ft_swap_num_array(int *nums, int i, int j);
 
 void	ft_quick_sort(int *arr, int left, int right);
 
-int		ps_stack_is_sorted(t_stack  *stack);
-
+int		ps_stack_is_sorted(t_stack *stack);
 
 /*+------------------------------------------------------------+*/
 //	A2B UTILS
 /*+------------------------------------------------------------+*/
 
 int		chunk_check_index_exist(
-			t_data * data,
 			t_chunk *chunk,
 			t_stack *a);
 
@@ -57,16 +54,16 @@ t_chunk	a2b_chunk_init(t_data *data, t_stack *a);
 
 int		index_inside_stack(
 			t_stack *stack,
-			int	index,
+			int index,
 			int size);
 
 int		a_contains_largest_sort_a(
 			t_stack *a,
 			int *unordered_top,
 			int *unordered_bot,
-			int	highest);
+			int highest);
 
-int		reorder_before_push(
+void	reorder_before_push(
 			t_stack *a,
 			t_stack *b,
 			int *unordered_top,

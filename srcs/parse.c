@@ -6,7 +6,7 @@
 /*   By: ktieu <ktieu@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/29 16:03:49 by ktieu             #+#    #+#             */
-/*   Updated: 2024/07/13 23:28:22 by ktieu            ###   ########.fr       */
+/*   Updated: 2024/07/14 12:17:25 by ktieu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,16 +54,12 @@ int	*ft_arg_parse_to_arr(t_data *general_data, int *arr)
  * Search for whihch pair the index belongs to
  */
 static void	ft_to_index(
-	t_data *data,
 	int *arr,
 	t_stack *stack,
 	t_index_node *node)
 {
 	int	found_index;
-	int	scaler;
-	int	range;
 
-	scaler = 1;
 	found_index = 0;
 	while (found_index < stack->size)
 	{
@@ -74,14 +70,14 @@ static void	ft_to_index(
 	node->index = found_index;
 }
 
-static void	convert_num_to_index(t_data *data, int *arr, t_stack *stack)
+static void	convert_num_to_index(int *arr, t_stack *stack)
 {
 	t_index_node	*node;
 
 	node = stack->top;
 	while (node)
 	{
-		ft_to_index(data, arr, stack, node);
+		ft_to_index(arr, stack, node);
 		node = node->prev;
 	}
 }
@@ -118,6 +114,6 @@ t_stack	*ft_arg_parse_to_stack(t_data *data, int *arr, t_stack *stack)
 		i--;
 	}
 	data->amt_per_chunk = (stack->size + 1) / (data->max_chunks);
-	convert_num_to_index(data, arr, stack);
+	convert_num_to_index(arr, stack);
 	return (stack);
 }

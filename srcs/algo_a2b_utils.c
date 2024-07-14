@@ -6,14 +6,13 @@
 /*   By: ktieu <ktieu@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/09 17:15:41 by ktieu             #+#    #+#             */
-/*   Updated: 2024/07/13 23:49:52 by ktieu            ###   ########.fr       */
+/*   Updated: 2024/07/14 12:17:39 by ktieu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/algo.h"
 
 int	chunk_check_index_exist(
-	t_data *data,
 	t_chunk *chunk,
 	t_stack *a
 )
