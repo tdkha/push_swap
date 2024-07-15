@@ -6,7 +6,7 @@
 /*   By: ktieu <ktieu@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/12 15:26:25 by ktieu             #+#    #+#             */
-/*   Updated: 2024/07/14 12:19:16 by ktieu            ###   ########.fr       */
+/*   Updated: 2024/07/15 09:22:10 by ktieu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ int	a_contains_largest_sort_a(
 	}
 	else if (a->size && a->bot->index == highest)
 	{
-		printf("rra\n");
+		ft_printf("rra\n");
 		ps_rrotate(a);
 		(*unordered_bot)--;
 		return (1);

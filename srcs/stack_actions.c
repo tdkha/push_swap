@@ -6,7 +6,7 @@
 /*   By: ktieu <ktieu@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/04 11:40:51 by ktieu             #+#    #+#             */
-/*   Updated: 2024/07/14 16:49:32 by ktieu            ###   ########.fr       */
+/*   Updated: 2024/07/15 09:22:06 by ktieu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,13 +21,13 @@ static int	do_push(char c, t_stack *a, t_stack *b)
 	{
 		res = ps_push(b, a);
 		if (res)
-			printf("pa\n");
+			ft_printf("pa\n");
 	}
 	else if (c == 'b')
 	{
 		res = ps_push(a, b);
 		if (res)
-			printf("pb\n");
+			ft_printf("pb\n");
 	}
 	else
 		res = 0;
@@ -43,18 +43,18 @@ static int	do_swap(char c, t_stack *a, t_stack *b)
 	{
 		res = ps_swap(a);
 		if (res)
-			printf("sa\n");
+			ft_printf("sa\n");
 	}
 	else if (c == 'b')
 	{
 		res = ps_swap(b);
 		if (res)
-			printf("sb\n");
+			ft_printf("sb\n");
 	}
 	else if (c == 's')
 	{
 		if (ps_swap(a) && ps_swap(b))
-			printf("ss\n");
+			ft_printf("ss\n");
 		else
 			res = 0;
 	}
@@ -72,19 +72,19 @@ static int	do_rotate(char c, t_stack *a, t_stack *b)
 	{
 		res = ps_rotate(a);
 		if (res)
-			printf("ra\n");
+			ft_printf("ra\n");
 	}
 	else if (c == 'b')
 	{
 		res = ps_rotate(b);
 		if (res)
-			printf("rb\n");
+			ft_printf("rb\n");
 	}
 	else if (c == 'r')
 	{
 		res = ps_rotate2(a, b);
 		if (res)
-			printf("rr\n");
+			ft_printf("rr\n");
 	}
 	else
 		res = 0;
@@ -100,18 +100,18 @@ static int	do_reverse_rotate(char c, t_stack *a, t_stack *b)
 	{
 		res = ps_rrotate(a);
 		if (res)
-			printf("rra\n");
+			ft_printf("rra\n");
 	}
 	else if (c == 'b')
 	{
 		res = ps_rrotate(b);
 		if (res)
-			printf("rrb\n");
+			ft_printf("rrb\n");
 	}
 	else if (c == 'r')
 	{
 		if (ps_rrotate2(a, b))
-			printf("rrr\n");
+			ft_printf("rrr\n");
 		else
 			res = 0;
 	}

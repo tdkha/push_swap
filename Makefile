@@ -6,7 +6,7 @@
 #    By: ktieu <ktieu@student.hive.fi>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/07/14 15:15:33 by ktieu             #+#    #+#              #
-#    Updated: 2024/07/14 17:04:50 by ktieu            ###   ########.fr        #
+#    Updated: 2024/07/15 09:23:54 by ktieu            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -38,8 +38,7 @@ SRC_FILES		=	./srcs/main.c \
 					./srcs/algo_utils.c \
 					./srcs/algo_a2b_utils.c \
 					./srcs/algo_b2a_utils.c \
- 					./srcs/algo.c \
-					./srcs/debug.c 
+ 					./srcs/algo.c
 
 B_FILES			=	./srcs/checker_bonus.c \
 					./srcs/stack_actions_bonus.c \
@@ -58,8 +57,7 @@ B_FILES			=	./srcs/checker_bonus.c \
 					./srcs/algo_utils.c \
 					./srcs/algo_a2b_utils.c \
 					./srcs/algo_b2a_utils.c \
- 					./srcs/algo.c \
-					./srcs/debug.c 
+ 					./srcs/algo.c
 
 O_DIR			=	obj
 O_FILES			=	$(addprefix $(O_DIR)/, $(notdir ${SRC_FILES:.c=.o}))

@@ -6,7 +6,7 @@
 /*   By: ktieu <ktieu@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 11:08:49 by ktieu             #+#    #+#             */
-/*   Updated: 2024/07/14 15:51:46 by ktieu            ###   ########.fr       */
+/*   Updated: 2024/07/15 09:24:16 by ktieu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,11 +83,5 @@ t_stack			ps_stack_init(void);
 void			ps_stack_push(t_stack *stack, t_index_node *to_push);
 
 void			ps_stack_free(t_stack *stack);
-
-/*+------------------------------------------------------------+*/
-//	DEBUG
-/*+------------------------------------------------------------+*/
-
-void			ft_debug_print_stacks(t_stack *stack_a, t_stack *stack_b);
 
 #endif

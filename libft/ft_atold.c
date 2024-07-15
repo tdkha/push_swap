@@ -6,7 +6,7 @@
 /*   By: ktieu <ktieu@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 11:02:34 by ktieu             #+#    #+#             */
-/*   Updated: 2024/06/26 11:03:01 by ktieu            ###   ########.fr       */
+/*   Updated: 2024/07/15 09:22:20 by ktieu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ static inline void	ft_atold_malloc_err(char *str)
 {
 	if (!str)
 	{
-		printf("ft_atold: Malloc error in ft_strtrim\n");
+		ft_printf_fd(2, "ft_atold: Malloc error in ft_strtrim\n");
 		exit(1);
 	}
 }
