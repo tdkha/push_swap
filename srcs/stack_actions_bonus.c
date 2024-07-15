@@ -6,7 +6,7 @@
 /*   By: ktieu <ktieu@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/14 16:34:55 by ktieu             #+#    #+#             */
-/*   Updated: 2024/07/14 17:48:31 by ktieu            ###   ########.fr       */
+/*   Updated: 2024/07/15 14:57:21 by ktieu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,18 +37,16 @@ static int	do_swap(char c, t_stack *a, t_stack *b)
 	res = 1;
 	if (c == 'a')
 	{
-		res = ps_swap(a);
+		ps_swap(a);
 	}
 	else if (c == 'b')
 	{
-		res = ps_swap(b);
+		ps_swap(b);
 	}
 	else if (c == 's')
 	{
-		if (ps_swap(a) && ps_swap(b))
-			res = 1;
-		else
-			res = 0;
+		ps_swap(a);
+		ps_swap(b);
 	}
 	else
 		res = 0;
@@ -62,15 +60,15 @@ static int	do_rotate(char c, t_stack *a, t_stack *b)
 	res = 1;
 	if (c == 'a')
 	{
-		res = ps_rotate(a);
+		ps_rotate(a);
 	}
 	else if (c == 'b')
 	{
-		res = ps_rotate(b);
+		ps_rotate(b);
 	}
 	else if (c == 'r')
 	{
-		res = ps_rotate2(a, b);
+		ps_rotate2(a, b);
 	}
 	else
 		res = 0;
@@ -84,15 +82,15 @@ static int	do_reverse_rotate(char c, t_stack *a, t_stack *b)
 	res = 1;
 	if (c == 'a')
 	{
-		res = ps_rrotate(a);
+		ps_rrotate(a);
 	}
 	else if (c == 'b')
 	{
-		res = ps_rrotate(b);
+		ps_rrotate(b);
 	}
 	else if (c == 'r')
 	{
-		res = ps_rrotate2(a, b);
+		ps_rrotate2(a, b);
 	}
 	else
 		res = 0;

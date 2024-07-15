@@ -6,11 +6,24 @@
 /*   By: ktieu <ktieu@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/14 12:07:17 by ktieu             #+#    #+#             */
-/*   Updated: 2024/07/15 10:54:35 by ktieu            ###   ########.fr       */
+/*   Updated: 2024/07/15 15:00:40 by ktieu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/checker_bonus.h"
+
+static int	check_sorted(
+	t_stack *a,
+	t_stack *b
+)
+{
+	int	status;
+
+	if (b->size >= 1)
+		return (0);
+	status = ps_stack_is_sorted(&a);
+	return (status);
+}
 
 static int	reader(
 	t_stack *a,
@@ -24,7 +37,7 @@ static int	reader(
 	{
 		if (!ps_stack_action_bonus(str, a, b))
 		{
-			if(str)
+			if (str)
 				free(str);
 			return (0);
 		}
@@ -57,7 +70,7 @@ int	main(int ac, char **av)
 		error = 1;
 	if (!error && reader(&stack_a, &stack_b) == 0)
 		error = 1;
-	if (!error && ps_stack_is_sorted(&stack_a) == 0)
+	if (!error && check_sorted(&stack_a, &stack_b) == 0)
 		error = -1;
 	ft_cleanup_bonus(&sorted_array, &stack_a, &stack_b, error);
 	return (0);
