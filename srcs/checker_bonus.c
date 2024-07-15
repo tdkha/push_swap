@@ -6,7 +6,7 @@
 /*   By: ktieu <ktieu@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/14 12:07:17 by ktieu             #+#    #+#             */
-/*   Updated: 2024/07/15 09:26:31 by ktieu            ###   ########.fr       */
+/*   Updated: 2024/07/15 10:54:35 by ktieu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,11 @@ static int	reader(
 	while (str)
 	{
 		if (!ps_stack_action_bonus(str, a, b))
+		{
+			if(str)
+				free(str);
 			return (0);
+		}
 		free(str);
 		str = get_next_line(STDIN_FILENO);
 	}
