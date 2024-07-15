@@ -6,7 +6,7 @@
 /*   By: ktieu <ktieu@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/27 08:34:35 by ktieu             #+#    #+#             */
-/*   Updated: 2024/07/13 23:29:08 by ktieu            ###   ########.fr       */
+/*   Updated: 2024/07/15 15:48:15 by ktieu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,12 +56,6 @@ static inline int	ft_arg_check_type(
 	}
 	if (!str[i] || !ft_isdigit(str[i]))
 		return (0);
-	if (str[i] == '0')
-	{
-		i++;
-		if (str[i] && ft_isdigit(str[i]))
-			return (0);
-	}
 	while (str[i] && ft_isdigit(str[i]))
 		i++;
 	while (str[i] && ft_isspace(str[i]))

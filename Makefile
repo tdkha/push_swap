@@ -6,7 +6,7 @@
 #    By: ktieu <ktieu@student.hive.fi>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/07/14 15:15:33 by ktieu             #+#    #+#              #
-#    Updated: 2024/07/15 09:23:54 by ktieu            ###   ########.fr        #
+#    Updated: 2024/07/15 15:30:29 by ktieu            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,7 @@ NAME_BONUS		=	checker
 
 CC				=	cc
 
-CFLAGS			=	-Wall -Wextra -Werror -I ./includes
+CFLAGS			=	-g -Wall -Wextra -Werror -I ./includes
 
 LIBFT			=	./libft
 
@@ -71,7 +71,9 @@ $(O_DIR)/%.o: srcs/%.c
 	@touch .libft
 	${MAKE} -C ${LIBFT}
 
-all: .mandatory
+all: $(NAME)
+
+$(NAME): .mandatory
 
 mandatory: .mandatory
 

@@ -6,7 +6,7 @@
 /*   By: ktieu <ktieu@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/14 12:07:17 by ktieu             #+#    #+#             */
-/*   Updated: 2024/07/15 15:00:40 by ktieu            ###   ########.fr       */
+/*   Updated: 2024/07/15 15:40:12 by ktieu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ static int	check_sorted(
 
 	if (b->size >= 1)
 		return (0);
-	status = ps_stack_is_sorted(&a);
+	status = ps_stack_is_sorted(a);
 	return (status);
 }
 
