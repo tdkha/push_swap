@@ -6,7 +6,7 @@
 /*   By: ktieu <ktieu@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 13:51:51 by ktieu             #+#    #+#             */
-/*   Updated: 2024/07/06 17:11:37 by ktieu            ###   ########.fr       */
+/*   Updated: 2024/07/16 11:21:54 by ktieu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ typedef struct s_printf
 /*-------------------------------------------------------------------------*/
 /*								FT_PRINTF									*/
 /*-------------------------------------------------------------------------*/
-
+size_t		ft_wordcount_delimiter(const char *s, char delimiter);
 void		ft_printf_init(t_printf *s);
 void		ft_printf_realloc(t_printf *s);
 void		ft_add_to_struct(t_printf *s, int c);

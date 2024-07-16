@@ -6,7 +6,7 @@
 #    By: ktieu <ktieu@student.hive.fi>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/07/14 15:15:33 by ktieu             #+#    #+#              #
-#    Updated: 2024/07/15 15:30:29 by ktieu            ###   ########.fr        #
+#    Updated: 2024/07/16 09:51:11 by ktieu            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,6 +23,7 @@ LIBFT			=	./libft
 LIB_A			=	$(LIBFT)/libft.a
 
 SRC_FILES		=	./srcs/main.c \
+					./srcs/general_data.c \
 					./srcs/utils.c \
 					./srcs/exit.c \
 					./srcs/args.c \
@@ -42,6 +43,7 @@ SRC_FILES		=	./srcs/main.c \
 
 B_FILES			=	./srcs/checker_bonus.c \
 					./srcs/stack_actions_bonus.c \
+					./srcs/general_data.c \
 					./srcs/utils.c \
 					./srcs/exit.c \
 					./srcs/args.c \
@@ -97,5 +99,7 @@ clean:
 fclean: clean
 	${MAKE} -C ${LIBFT} fclean
 	rm -rf ${NAME} $(NAME_BONUS)
+
+re: fclean all
 
 .PHONY: all clean fclean re bonus

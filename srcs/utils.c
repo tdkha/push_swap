@@ -6,7 +6,7 @@
 /*   By: ktieu <ktieu@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/14 15:16:58 by ktieu             #+#    #+#             */
-/*   Updated: 2024/07/15 09:26:18 by ktieu            ###   ########.fr       */
+/*   Updated: 2024/07/16 12:36:11 by ktieu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,9 +44,9 @@ inline int	ft_init(
 }
 
 inline void	ft_cleanup(
+	t_data *data,
 	int **array,
-	t_stack *a,
-	t_stack *b,
+	t_stacks *stacks,
 	int early_exit)
 {
 	if (*array)
@@ -54,18 +54,19 @@ inline void	ft_cleanup(
 		free(*array);
 		*array = NULL;
 	}
-	if (a != NULL)
-		ps_stack_free(a);
-	if (b != NULL)
-		ps_stack_free(b);
+	ft_multiple_free_set_null(&data->flat_av);
+	if (&(stacks->a) != NULL)
+		ps_stack_free(&(stacks->a));
+	if (&(stacks->a) != NULL)
+		ps_stack_free(&(stacks->a));
 	if (early_exit)
 		ft_exit("Error", 1);
 }
 
 inline void	ft_cleanup_bonus(
+	t_data *data,
 	int **array,
-	t_stack *a,
-	t_stack *b,
+	t_stacks *stacks,
 	int code)
 {
 	if (*array)
@@ -73,31 +74,15 @@ inline void	ft_cleanup_bonus(
 		free(*array);
 		*array = NULL;
 	}
-	if (a != NULL)
-		ps_stack_free(a);
-	if (b != NULL)
-		ps_stack_free(b);
+	ft_multiple_free_set_null(&data->flat_av);
+	if (&(stacks->a) != NULL)
+		ps_stack_free(&(stacks->a));
+	if (&(stacks->a) != NULL)
+		ps_stack_free(&(stacks->a));
 	if (code == -1)
 		ft_exit("KO", 0);
 	else if (code == 0)
 		ft_exit("OK", 0);
 	else if (code == 1)
 		ft_exit("Error", 1);
-}
-
-void	ps_general_data_init(
-	t_data *general_data,
-	int ac,
-	char **av
-)
-{
-	general_data->ac = ac;
-	general_data->av = av;
-	if (ac - 1 <= 20)
-		general_data->max_chunks = 1;
-	else if (ac - 1 <= 100)
-		general_data->max_chunks = 4;
-	else
-		general_data->max_chunks = 10;
-	general_data->total_amt = ac - 1;
 }

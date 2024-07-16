@@ -6,13 +6,13 @@
 /*   By: ktieu <ktieu@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 11:30:27 by ktieu             #+#    #+#             */
-/*   Updated: 2024/06/12 15:13:52 by ktieu            ###   ########.fr       */
+/*   Updated: 2024/07/16 11:21:37 by ktieu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static size_t	ft_wordcount(const char *s, char delimiter)
+size_t	ft_wordcount_delimiter(const char *s, char delimiter)
 {
 	size_t	count;
 
@@ -127,7 +127,7 @@ char	**ft_split_esc(const char *s, char delimiter)
 	char	**res;
 	size_t	size;
 
-	size = ft_wordcount(s, delimiter);
+	size = ft_wordcount_delimiter(s, delimiter);
 	res = (char **)malloc((size + 1) * sizeof(char *));
 	if (!res)
 	{

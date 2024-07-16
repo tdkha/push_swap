@@ -6,7 +6,7 @@
 /*   By: ktieu <ktieu@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/09 17:15:41 by ktieu             #+#    #+#             */
-/*   Updated: 2024/07/14 12:17:39 by ktieu            ###   ########.fr       */
+/*   Updated: 2024/07/16 09:47:08 by ktieu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,10 +97,6 @@ t_chunk	a2b_chunk_init(t_data *data, t_stack *a)
 
 	chunk.median = (a->size - 3) / 2;
 	chunk.max = chunk.median + (data->amt_per_chunk / 2);
-	if (chunk.max >= data->total_amt - 3)
-	{
-		chunk.max = data->total_amt - 4;
-	}
 	if (chunk.max >= data->total_amt - 3)
 	{
 		chunk.max = data->total_amt - 4;

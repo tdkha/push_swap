@@ -6,7 +6,7 @@
 /*   By: ktieu <ktieu@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 11:54:23 by ktieu             #+#    #+#             */
-/*   Updated: 2024/07/14 16:25:02 by ktieu            ###   ########.fr       */
+/*   Updated: 2024/07/16 12:36:45 by ktieu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,15 +32,15 @@ int			ft_arg_parse(
 				int *arr, t_stack *stack);
 
 void		ft_cleanup(
+				t_data *data,
 				int **array,
-				t_stack *a,
-				t_stack *b,
+				t_stacks *stacks,
 				int early_exit);
 
 void		ft_cleanup_bonus(
+				t_data *data,
 				int **array,
-				t_stack *a,
-				t_stack *b,
+				t_stacks *stacks,
 				int code);
 /*+------------------------------------------------------------+*/
 //	Argument check

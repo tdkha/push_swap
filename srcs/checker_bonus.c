@@ -6,7 +6,7 @@
 /*   By: ktieu <ktieu@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/14 12:07:17 by ktieu             #+#    #+#             */
-/*   Updated: 2024/07/15 15:40:12 by ktieu            ###   ########.fr       */
+/*   Updated: 2024/07/16 17:43:49 by ktieu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,29 +49,28 @@ static int	reader(
 
 int	main(int ac, char **av)
 {
-	int		error;
-	int		*sorted_array;
-	t_data	data;
-	t_stack	stack_a;
-	t_stack	stack_b;
+	int			error;
+	int			*sorted_array;
+	t_data		data;
+	t_stacks	stacks;
 
-	stack_a = (t_stack){0};
-	stack_b = (t_stack){0};
+	stacks.a = (t_stack){0};
+	stacks.b = (t_stack){0};
 	sorted_array = NULL;
 	error = 0;
 	if (ac < 2)
 		return (0);
 	ps_general_data_init(&data, ac, av);
-	if (ft_arg_check(ac, av) == 0)
+	if (ft_arg_check(ac, data.flat_av) == 0)
 		error = 1;
-	if (!error && !ft_init(&data, &sorted_array, &stack_a, &stack_b))
+	if (!error && !ft_init(&data, &sorted_array, &stacks.a, &stacks.b))
 		error = 1;
-	if (!error && !ft_arg_parse(&data, sorted_array, &stack_a))
+	if (!error && !ft_arg_parse(&data, sorted_array, &stacks.a))
 		error = 1;
-	if (!error && reader(&stack_a, &stack_b) == 0)
+	if (!error && reader(&stacks.a, &stacks.b) == 0)
 		error = 1;
-	if (!error && check_sorted(&stack_a, &stack_b) == 0)
+	if (!error && check_sorted(&stacks.a, &stacks.b) == 0)
 		error = -1;
-	ft_cleanup_bonus(&sorted_array, &stack_a, &stack_b, error);
+	ft_cleanup_bonus(&data, &sorted_array, &stacks, error);
 	return (0);
 }

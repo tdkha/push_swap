@@ -6,7 +6,7 @@
 /*   By: ktieu <ktieu@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/29 16:03:49 by ktieu             #+#    #+#             */
-/*   Updated: 2024/07/14 14:37:58 by ktieu            ###   ########.fr       */
+/*   Updated: 2024/07/16 13:00:01 by ktieu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ int	*ft_arg_parse_to_arr(t_data *general_data, int *arr)
 		return (NULL);
 	while (i < general_data->ac)
 	{
-		arr[i - 1] = ft_atoi(general_data->av[i]);
+		arr[i - 1] = ft_atoi(general_data->flat_av[i]);
 		i++;
 	}
 	ft_quick_sort(arr, 0, i - 2);
@@ -104,7 +104,7 @@ t_stack	*ft_arg_parse_to_stack(t_data *data, int *arr, t_stack *stack)
 		return (NULL);
 	while (i > 0)
 	{
-		node = ps_node_init(ft_atoi(data->av[i]));
+		node = ps_node_init(ft_atoi(data->flat_av[i]));
 		if (!node)
 		{
 			ps_stack_free(stack);
