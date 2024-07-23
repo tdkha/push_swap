@@ -6,7 +6,7 @@
 #    By: ktieu <ktieu@student.hive.fi>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/07/14 15:15:33 by ktieu             #+#    #+#              #
-#    Updated: 2024/07/16 09:51:11 by ktieu            ###   ########.fr        #
+#    Updated: 2024/07/23 08:50:16 by ktieu            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,7 @@ NAME_BONUS		=	checker
 
 CC				=	cc
 
-CFLAGS			=	-g -Wall -Wextra -Werror -I ./includes
+CFLAGS			=	-Wall -Wextra -Werror -I ./includes
 
 LIBFT			=	./libft
 
