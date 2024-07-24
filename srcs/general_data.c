@@ -6,7 +6,7 @@
 /*   By: ktieu <ktieu@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/16 09:50:35 by ktieu             #+#    #+#             */
-/*   Updated: 2024/07/24 15:04:49 by ktieu            ###   ########.fr       */
+/*   Updated: 2024/07/24 16:59:31 by ktieu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,26 +55,25 @@ static int	complex_arg_handler(t_data *data, int *i, int *j)
 	return (1);
 }
 
-static void	flat(t_data *data)
+static void	flat(t_data *data, int i, int j)
 {
-	int		i;
-	int		j;
-
-	i = 0;
-	j = 0;
 	while (data->av[i])
 	{
-		if (!is_complex_arg(data->av[i]))
+		ft_split_skip_delimiter((const char **)&data->av[i], ' ');
+		if (*data->av[i])
 		{
-			data->flat_av[j] = ft_strdup(data->av[i]);
-			if (!data->flat_av[j])
-				return (ft_multiple_free_set_null(&data->flat_av));
-			j++;
-		}
-		else
-		{
-			if (complex_arg_handler(data, &i, &j) == 0)
-				return (ft_multiple_free_set_null(&data->flat_av));
+			if (!is_complex_arg(data->av[i]))
+			{
+				data->flat_av[j] = ft_strdup(data->av[i]);
+				if (!data->flat_av[j])
+					return (ft_multiple_free_set_null(&data->flat_av));
+				j++;
+			}
+			else
+			{
+				if (complex_arg_handler(data, &i, &j) == 0)
+					return (ft_multiple_free_set_null(&data->flat_av));
+			}
 		}
 		i++;
 	}
@@ -119,6 +118,6 @@ void	ps_general_data_init(
 	if (!data->flat_av)
 		ft_exit("Error\n", 1);
 	ft_bzero(data->flat_av, sizeof(flat_av_size + 1));
-	flat(data);
+	flat(data, 0, 0);
 	data->total_amt = data->ac - 1;
 }
