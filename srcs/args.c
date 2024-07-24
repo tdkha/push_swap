@@ -6,7 +6,7 @@
 /*   By: ktieu <ktieu@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/27 08:34:35 by ktieu             #+#    #+#             */
-/*   Updated: 2024/07/15 15:48:15 by ktieu            ###   ########.fr       */
+/*   Updated: 2024/07/24 15:03:49 by ktieu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,10 +65,24 @@ static inline int	ft_arg_check_type(
 	return (0);
 }
 
-inline int	ft_arg_check(int ac, char **av)
+static int	get_ac(char **av)
 {
 	int	i;
 
+	i = 0;
+	while (av[i])
+	{
+		++i;
+	}
+	return (i);
+}
+
+inline int	ft_arg_check(char **av)
+{
+	int	i;
+	int	ac;
+
+	ac = get_ac(av);
 	i = 1;
 	if (ac < 2)
 		return (0);

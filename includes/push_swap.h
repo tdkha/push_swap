@@ -6,7 +6,7 @@
 /*   By: ktieu <ktieu@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 11:54:23 by ktieu             #+#    #+#             */
-/*   Updated: 2024/07/16 12:36:45 by ktieu            ###   ########.fr       */
+/*   Updated: 2024/07/24 14:54:54 by ktieu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ void		ft_cleanup_bonus(
 /*+------------------------------------------------------------+*/
 
 int			ft_arg_check_dup(int *sorted_arr, int size);
-int			ft_arg_check(int ac, char **av);
+int			ft_arg_check(char **av);
 
 /*+------------------------------------------------------------+*/
 //	Argument parsing

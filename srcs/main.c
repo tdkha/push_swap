@@ -6,7 +6,7 @@
 /*   By: ktieu <ktieu@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 11:53:52 by ktieu             #+#    #+#             */
-/*   Updated: 2024/07/16 13:05:54 by ktieu            ###   ########.fr       */
+/*   Updated: 2024/07/24 14:55:23 by ktieu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ int	main(int ac, char **av)
 	if (ac == 1)
 		return (0);
 	ps_general_data_init(&general_data, ac, av);
-	if (ft_arg_check(ac, general_data.flat_av) == 0)
+	if (ft_arg_check(general_data.flat_av) == 0)
 		error = 1;
 	if (!error && !ft_init(&general_data, &sorted_array, &stacks.a, &stacks.b))
 		error = 1;
