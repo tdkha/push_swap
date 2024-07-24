@@ -6,7 +6,7 @@
 /*   By: ktieu <ktieu@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/16 09:50:35 by ktieu             #+#    #+#             */
-/*   Updated: 2024/07/24 16:59:31 by ktieu            ###   ########.fr       */
+/*   Updated: 2024/07/24 17:55:56 by ktieu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ static int	complex_arg_handler(t_data *data, int *i, int *j)
 	return (1);
 }
 
-static void	flat(t_data *data, int i, int j)
+static int	flat(t_data *data, int i, int j)
 {
 	while (data->av[i])
 	{
@@ -66,19 +66,21 @@ static void	flat(t_data *data, int i, int j)
 			{
 				data->flat_av[j] = ft_strdup(data->av[i]);
 				if (!data->flat_av[j])
-					return (ft_multiple_free_set_null(&data->flat_av));
+					return (0);
 				j++;
 			}
 			else
 			{
 				if (complex_arg_handler(data, &i, &j) == 0)
-					return (ft_multiple_free_set_null(&data->flat_av));
+					return (0);
 			}
 		}
+		else
+			return (0);
 		i++;
 	}
 	data->ac = j;
-	data->flat_av[j] = NULL;
+	return (1);
 }
 
 static size_t	ft_flat_av_size(char **av)
@@ -104,7 +106,9 @@ void	ps_general_data_init(
 {
 	size_t	flat_av_size;
 
+	ft_bzero(data, sizeof(t_data));
 	flat_av_size = 0;
+	data->flat_error = 0;
 	data->ac = ac;
 	data->av = av;
 	if (ac - 1 <= 20)
@@ -114,10 +118,13 @@ void	ps_general_data_init(
 	else
 		data->max_chunks = 10;
 	flat_av_size = ft_flat_av_size(av);
-	data->flat_av = (char **)malloc(sizeof(char *) * (flat_av_size + 1));
+	data->flat_av = (char **)ft_calloc((flat_av_size + 1), sizeof(char *));
 	if (!data->flat_av)
-		ft_exit("Error\n", 1);
-	ft_bzero(data->flat_av, sizeof(flat_av_size + 1));
-	flat(data, 0, 0);
+		ft_exit("Error", 1);
+	if (flat(data, 0, 0) == 0)
+	{
+		ft_multiple_free_set_null(&data->flat_av);
+		ft_exit("Error", 1);
+	}
 	data->total_amt = data->ac - 1;
 }

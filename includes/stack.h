@@ -6,7 +6,7 @@
 /*   By: ktieu <ktieu@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 11:08:49 by ktieu             #+#    #+#             */
-/*   Updated: 2024/07/16 13:03:33 by ktieu            ###   ########.fr       */
+/*   Updated: 2024/07/24 17:27:33 by ktieu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ typedef struct s_data
 	int		ac;
 	char	**av;
 	char	**flat_av;
+	int		flat_error;
 	int		total_amt;
 	int		amt_per_chunk;
 	int		max_chunks;
