@@ -6,7 +6,7 @@
 /*   By: ktieu <ktieu@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/16 09:50:35 by ktieu             #+#    #+#             */
-/*   Updated: 2024/07/24 17:55:56 by ktieu            ###   ########.fr       */
+/*   Updated: 2024/07/30 14:26:17 by ktieu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,12 +111,6 @@ void	ps_general_data_init(
 	data->flat_error = 0;
 	data->ac = ac;
 	data->av = av;
-	if (ac - 1 <= 20)
-		data->max_chunks = 1;
-	else if (ac - 1 <= 100)
-		data->max_chunks = 4;
-	else
-		data->max_chunks = 10;
 	flat_av_size = ft_flat_av_size(av);
 	data->flat_av = (char **)ft_calloc((flat_av_size + 1), sizeof(char *));
 	if (!data->flat_av)
@@ -126,5 +120,11 @@ void	ps_general_data_init(
 		ft_multiple_free_set_null(&data->flat_av);
 		ft_exit("Error", 1);
 	}
+	if (data->ac - 1 <= 20)
+		data->max_chunks = 1;
+	else if (data->ac - 1 <= 100)
+		data->max_chunks = 4;
+	else
+		data->max_chunks = 10;
 	data->total_amt = data->ac - 1;
 }
